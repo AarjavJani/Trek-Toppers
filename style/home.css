@@ -1,0 +1,27 @@
+/* Season cards */
+.card-img-overlay {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .card:hover .card-img-overlay {
+    opacity: 1;
+  }
+  
+  .card-img-top {
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .card:hover .card-img-top {
+    opacity: 0.5;
+  }
+  
+  .card-text button {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .card:hover .card-text button {
+    opacity: 1;
+  }
+/* /Season Cards */

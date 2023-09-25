@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <!-- /Bootstrap CSS -->
+
+    <!-- Icon CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- /Icon CDN -->
+
+    <title>Trek Page</title>
+
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-md bg-body-tertiary bg-light navbar-light" data-bs-theme="light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="home.html">
+        <img src="Images\logo\logo.svg" alt="TrekToppers Logo" width="100px">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link fs-5" aria-current="page" href="home.html"><b>Home</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-5" href="about.html"><b>About</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-5" href="contact.html"><b>Contact Us</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-5" href="login.html"><b>LogIn</b></a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+  <!-- /Navbar -->
+
+    <!-- Content -->
+    <div class="container p-0 px-3 mb-4">
+
+        <!-- Content Heading -->
+        <h2 class="border-bottom border-3 border-secondary text-center text-middle mb-0 pb-1">Chadar Trek</h2>
+        <!-- /Content Heading -->
+
+        <!-- Content Sub-Header -->
+        <div class="container text-center mb-2 mt-2">
+            <div class="row">
+                <div class="col">
+                    <h5><i class="bi bi-clock"></i> Duration</h5>
+                </div>
+                <div class="col border-start border-end"><h5><i class="bi bi-people-fill"></i> Batch Size</h5></div>
+                <div class="col">
+                    <h5>Cost</h5>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <h6>9 Nights, 10Days</h6>
+                </div>
+                <div class="col border-start border-end"><h6>25 people</h6></div>
+                <div class="col">
+                    <h6><i class="bi bi-currency-rupee"></i>20,000</h6>
+                </div>
+            </div>
+        </div>
+        <!-- /Content Sub-Header -->
+
+        <!-- Carousel -->
+        <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+
+            <!-- carousel indicators -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true"
+                    aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                <button type="button" data-bs-target="#carousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+            </div>
+            <!-- /carousel indicators -->
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="Images\ChadarTrek\1.jpg" class="d-block w-100" alt="..." data-bs-interval="10000">
+                </div>
+                <div class="carousel-item">
+                    <img src="Images\ChadarTrek\2.jpg" class="d-block w-100" alt="..." data-bs-interval="10000">
+                </div>
+                <div class="carousel-item">
+                    <img src="Images\ChadarTrek\3.jpg" class="d-block w-100" alt="..." data-bs-interval="10000">
+                </div>
+                <div class="carousel-item">
+                    <img src="Images\ChadarTrek\4.jpg" class="d-block w-100" alt="..." data-bs-interval="10000">
+                </div>
+                <div class="carousel-item">
+                    <img src="Images\ChadarTrek\5.jpg" class="d-block w-100" alt="..." data-bs-interval="10000">
+                </div>
+                <div class="carousel-item">
+                    <img src="Images\ChadarTrek\6.jpg" class="d-block w-100" alt="..." data-bs-interval="10000">
+                </div>
+            </div>
+
+            <!-- previous and next button -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            <!-- /previous and next button -->
+        </div>
+        <!-- /Carousel -->
+
+        <!-- Overview -->
+        <h1 class="display-6">Overview</h1>
+        <p>“Chadar” refers to the sheet of ice that from over the Zanskar river as it transforms itself from a rapid
+            flowing river into a white blanket of ice during winter. It becomes a frozen spectacle of glass ice ranging
+            from a bluishtinge to golden yellow that is seen during the few hours that sunlight reaches directly into
+            the gorge to the milky whitish on a moonlit night – as said a trek journey like no other. Chadar connects
+            villages in the Zanskar valley (deep in the mountains) with Chilling (on the road to Leh) along the frozen
+            Zanskar River.
+
+            This route has been used for centuries for trade and transportation, and is most reliable in February when
+            the ice is most stable.</p>
+        <!-- /Overview -->
+
+        <!-- Highlights -->
+        <h1 class="display-6">Highlights</h1>
+        <ul>
+            <li>4 Nights at Leh and 4 Nights at Trek.</li>
+            <li>9 Days FROZEN river trek.</li>
+            <li>Tenting on frozen river.</li>
+            <li>Sensational feel of -30`.</li>
+        </ul>
+        <!-- /Highlights -->
+
+        <!-- Itinerary -->
+        <h1 class="display-6">Itinerary</h1>
+
+        <div class="accordion" id="accordionExample">
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Day 01: Arrival in Leh (3500 m)
+                    </button>
+                </h2>
+
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <img src="Images\ChadarTrek\iternary1.png" alt="" class="w-100">
+                        <p>Leh, which lies at an altitude of more than 3500 metres above sea level, is the second
+                            largest
+                            district in the country. In winters, as most passes leading to Leh are closed, you will be
+                            flown
+                            to the Leh airport which has the distinction of being the highest airport in the world.
+                            As soon you land at the airport, you will be greeted by dry and cold air, but what will take
+                            all
+                            your attention is the lofty, snow-capped mountains all around; a sight that will remain with
+                            you
+                            forever. After completing the arrival formalities and picking up your bags from the baggage
+                            counter, take a taxi and proceed towards the pre-arranged hotel. Enjoy an overnight stay in
+                            the
+                            hotel.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Day 02: Acclimatization Walk in Leh
+                    </button>
+                </h2>
+
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <img src="Images\ChadarTrek\iternary2.png" alt="" class="w-100">
+                        <p>Get up early in the morning and begin the process of acclimatization at high altitude.
+                            Proceed to walk towards Shanti Stupa, a sacred Buddhist stupa, from where you will get an
+                            opportunity to witness a beautiful view of the sunrise and a panoramic sight of the town of
+                            Leh.
+                            Stay hydrated as you spend your first day of the trek in Leh.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Day 03: Getting a medical check-up at SNM Hospital
+                    </button>
+                </h2>
+
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <img src="Images\ChadarTrek\iternary3.png" alt="" class="w-100">
+                        <p>Due to the challenging nature of this particular trek, government has made it mandatory for
+                            participants to acquire medical certification before they undertake Chadar trek. A clearance
+                            certificate upon a medical checkup will be issued by the Sonam Narbu Hospital. One will get
+                            a certificate only when adequately fit and acclimatized for the trek.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Day 04: Shingra Koma and Somo Paldar
+                    </button>
+                </h2>
+
+                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <img src="Images\ChadarTrek\iternary4.png" alt="" class="w-100">
+                        <p>Enjoy tea and breakfast in the morning and start your journey by driving to Shingra Koma.
+                            This ride is not for the faint-hearted as bumpy roads and hairpin bends are quite common on
+                            this route. The sight of the surrounding high mountains will give you a sense of awe. After
+                            a point, you will have to deboard from the vehicle and trek towards Somo Paldar campsite.
+                            Your Chadar trek expedition starts here.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Day 05: Trek to Dib Cave/Tibb
+                    </button>
+                </h2>
+
+                <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <img src="Images\ChadarTrek\iternary5.png" alt="" class="w-100">
+                        <p>Today, you will set out to trek to Dib Cave/Tibb. During the day, you will behold the
+                            breathtaking beauty of the region including ravines and gorges. You might not see sunshine
+                            properly as the steep cliffs in this area obstruct them. Once you reach Dib, you will see a
+                            large cave. This is the place where you will halt for the night and rest. Butter tea would
+                            be offered and we recommend you to try it. Enjoy overnight stay at the campsite.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        Day 06: Dib Cave/Tibb to Camp at Naerak
+                    </button>
+                </h2>
+
+                <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <img src="Images\ChadarTrek\iternary6.png" alt="" class="w-100">
+                        <p>Today, you will trek the most scenic part of the region and get a chance to witness the
+                            largest frozen waterfall and prayer flags. The bridge built next to the site of the
+                            waterfall is used in summers to reach Zanskar from Leh. Thereafter, you can proceed towards
+                            the village of Naerak to mingle with the locals and understand their way of living. Stay
+                            overnight at the village camp comfortably.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                        Day 07: Naerak to Tibb
+                    </button>
+                </h2>
+
+                <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <img src="Images\ChadarTrek\iternary7.png" alt="" class="w-100">
+                        <p>On this particular day, start your return trip and proceed towards Tibb. The return trail
+                            would not be easy and the river quickly reacts to any change in the temperature. By now the
+                            frozen river might have taken an entirely new form. On the way back, admire the beauty of
+                            the region, click pictures and meet locals, who can be seen wearing traditional woolen
+                            Gonchas (robes). Upon Dib Cave, relax and stay overnight at the campsite.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                        Day 08: Tibb to Shingra Koma & Back To Leh
+                    </button>
+                </h2>
+
+                <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <img src="Images\ChadarTrek\iternary8.png" alt="" class="w-100">
+                        <p>In the morning, get ready to leave Tibb and proceed towards Shingra Koma, crossing Gyalpo.
+                            The trail today will give you a chance to witness high mountains and pugmarks of wild
+                            animals like snow leopards, ibex and foxes. If lucky, you just might spot a leopard; even if
+                            you do not, then at least be sure, you would be watched by them.
+                            In the evening, drive back to Leh and stay overnight at the hotel.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                        Day 09: Departure from Leh
+                    </button>
+                </h2>
+
+                <div id="collapseNine" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <img src="Images\ChadarTrek\iternary9.png" alt="" class="w-100">
+                        <p>Today, the mesmeric journey to one of the finest scenic destinations of India will ultimately
+                            come to an end.
+                            The entire experience, we are sure, would give you an unmatchable feeling of achievement and
+                            satisfaction. In the morning, check-out from the guesthouse and depart from the Leh airport.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Itinerary -->
+
+        <!-- Included & Excluded -->
+        <h2 class="mt-3">Included & Excluded</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="fs-5 lead fs-4">
+                        <i class="bi bi-check2 text-success"></i>Accommodation in Leh Hotel (Day
+                        1,2,3, 8 according to Itinerary at Hotel Shanti Nest) and Camp (Day 4,5,6,7).
+                    </p>
+
+                    <p class="fs-5 lead fs-4">
+                        <i class="bi bi-check2 text-success"></i>Meals while on trek (Veg.)
+                    </p>
+
+                    <p class="fs-5 lead fs-4">
+                        <i class="bi bi-check2 text-success"></i>Trek equipment.
+                    </p>
+
+                    <p class="fs-5 lead fs-4">
+                        <i class="bi bi-check2 text-success"></i>First aid medical kits and oxygen cylinder.
+                    </p>
+
+                    <p class="fs-5 lead fs-4">
+                        <i class="bi bi-check2 text-success"></i>Qualified & experienced trek Leader,
+                        Guide and Support staff to help trekkers.
+                    </p>
+
+                    <p class="fs-5 lead fs-4">
+                        <i class="bi bi-check2 text-success"></i>Transport from Leh to Road head and
+                        return.
+                    </p>
+
+                    <p class="fs-5 lead fs-4">
+                        <i class="bi bi-check2 text-success"></i>Transportation from Base Camp Leh to
+                        Leh is included in the package as per the itinerary.
+                    </p>
+                </div>
+
+                <div class="col">
+                    <p class="fs-5 lead fs-4">
+                        <i class="bi bi-x-lg text-danger"></i>Food / Meal in Leh. Available in Leh Hotel/Guest House @
+                        Rs.250/- Per Meal
+                    </p>
+
+                    <p class="fs-5 lead fs-4">
+                        <i class="bi bi-x-lg text-danger"></i>Any kind of personal expenses.
+                    </p>
+
+                    <p class="fs-5 lead fs-4">
+                        <i class="bi bi-x-lg text-danger"></i>Insurance
+                    </p>
+
+                    <p class="fs-5 lead fs-4">
+                        <i class="bi bi-x-lg text-danger"></i>Local Fees Environmental Fee, Wildlife Fee, ALTOA, LAHDC
+                        etc
+                        ranges between Rs.300/- to Rs.2500/-
+                    </p>
+
+                    <p class="fs-5 lead fs-4">
+                        <i class="bi bi-x-lg text-danger"></i>Porter to carry personal luggage. The same be arranged @
+                        Rs.3750/- Per Day(5 Days) up to 10Kg baggage
+                    </p>
+
+                    <p class="fs-5 lead fs-4">
+                        <i class="bi bi-x-lg text-danger"></i>Anything not specifically mentioned under 'Inclusions'.
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- /Included & Excluded -->
+
+        <!-- Booking button -->        
+          <div class="d-grid gap-2 col-6 mx-auto mb-5 mt-3">
+            <button class="btn btn-primary fs-4" type="button">Book tickets</button>
+          </div>
+        <!-- /Booking button -->
+
+    </div>
+    <!-- /Content -->
+
+  <!-- Footer -->
+  <div class="container">
+    <footer class="py-5">
+      <div class="row">
+        <div class="col-6 col-md-6 mb-3">
+          <h5>Section</h5>
+          <nav style="--bs-breadcrumb-divider: '|';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="home.html" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a href="contact.html" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a href="about.html" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">FAQs</a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+
+        <div class="col-md-5 offset-md-1 mb-3">
+          <form>
+            <h5>Subscribe to our newsletter</h5>
+            <p>Monthly digest of what's new and exciting from us.</p>
+            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+              <label for="newsletter1" class="visually-hidden">Email address</label>
+              <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+              <button class="btn btn-primary" type="button">Subscribe</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+        <p>Copyright © 2023 by TrekToppers | Developed by Aarjav Jani</p>
+        <ul class="list-unstyled d-flex">
+          <li class="ms-3">
+            <a class="link-body-emphasis" href="#"> <!-- Link to our twitter handle-->
+              <i class="bi bi-twitter text-primary fs-4"></i>
+            </a>
+          </li>
+          <li class="ms-3">
+            <a class="link-body-emphasis" href="#"> <!-- Link to our instagram page-->
+              <i class="bi bi-instagram fs-4"></i>
+            </a>
+          </li>
+          <li class="ms-3">
+            <a class="link-body-emphasis" href="#"> <!-- Link to our facebook page-->
+              <i class="bi bi-facebook text-primary fs-4"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+  <!-- /Footer -->
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
