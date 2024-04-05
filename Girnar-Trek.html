@@ -5,6 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trek Page</title>
 
   <!-- Bootstrap CSS -->
   <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -13,36 +14,36 @@
   <!-- Icon CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
   <!-- /Icon CDN -->
+  <link rel="stylesheet" href="./style/navbar-link.css">
+  <link rel="stylesheet" href="./style/navbar-toggler.css">
 
-  <title>Trek Page</title>
 </head>
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-md bg-body-tertiary bg-light navbar-light" data-bs-theme="light">
+  <nav class="navbar navbar-expand-md bg-body-secondary bg-dark navbar-light" data-bs-theme="dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="home.html">
-        <img src="Images\logo\logo.svg" alt="TrekToppers Logo" width="100px" />
-      </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      <button class="navbar-toggler" onclick="this.classList.toggle('change')" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
           <li class="nav-item">
-            <a class="nav-link fs-5" aria-current="page" href="home.html"><b>Home</b></a>
+            <a class="nav-link fs-5" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5" href="about.html"><b>About</b></a>
+            <a class="nav-link fs-5" href="about.html">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5" href="contact.html"><b>Contact Us</b></a>
+            <a class="nav-link fs-5" href="contact.html">Contact Us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5" href="login.html"><b>LogIn</b></a>
+            <a class="nav-link fs-5" href="login.html">Login</a>
           </li>
         </ul>
       </div>
@@ -53,7 +54,7 @@
   <!-- Content -->
   <div class="container p-0 px-3 mb-4">
     <!-- Content Heading -->
-    <h2 class="border-bottom border-3 border-secondary text-center text-middle mb-0 pb-1">
+    <h2 class="border-bottom border-3 border-secondary text-center text-middle mb-0 mt-2 pb-1">
       Girnar Hiking
     </h2>
     <!-- /Content Heading -->
