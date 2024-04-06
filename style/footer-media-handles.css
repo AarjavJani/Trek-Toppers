@@ -1,0 +1,9 @@
+@media (max-width: 576px) {
+    .left-on-small {
+      left: -5%;
+    }
+    .inc-fs-on-small{
+      font-size: 2rem !important;
+    }
+  }
+  

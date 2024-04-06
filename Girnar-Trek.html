@@ -24,8 +24,9 @@
   <nav class="navbar navbar-expand-md sticky-top bg-body-secondary bg-dark navbar-light" data-bs-theme="dark">
     <div class="container-fluid">
 
-      <button class="navbar-toggler" onclick="this.classList.toggle('change')" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" onclick="this.classList.toggle('change')" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
         <div class="bar"></div>
         <div class="bar"></div>
         <div class="bar"></div>
@@ -271,12 +272,13 @@
   <div class="container">
     <footer class="py-5">
       <div class="row">
-        <div class="col-6 col-md-6 mb-3">
+        <!-- Section Breadcrumb -->
+        <div class="col-md-6 mb-3">
           <h5>Section</h5>
-          <nav style="--bs-breadcrumb-divider: '|'" aria-label="breadcrumb">
+          <nav style="--bs-breadcrumb-divider: '|';" aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="home.html" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
+                <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
               </li>
               <li class="breadcrumb-item">
                 <a href="contact.html" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
@@ -290,53 +292,61 @@
             </ol>
           </nav>
         </div>
+        <!-- /Section Breadcrumb -->
 
+        <!-- Newsletter -->
         <div class="col-md-5 offset-md-1 mb-3">
           <form>
             <h5>Subscribe to our newsletter</h5>
             <p>Monthly digest of what's new and exciting from us.</p>
             <div class="d-flex flex-column flex-sm-row w-100 gap-2">
               <label for="newsletter1" class="visually-hidden">Email address</label>
-              <input id="newsletter1" type="text" class="form-control" placeholder="Email address" />
+              <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
               <button class="btn btn-primary" type="button">Subscribe</button>
             </div>
           </form>
         </div>
+        <!-- /Newsletter -->
       </div>
 
       <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-        <p>Copyright © 2023 by TrekToppers | Developed by Aarjav Jani</p>
-        <ul class="list-unstyled d-flex">
-          <li class="ms-3">
-            <a class="link-body-emphasis" href="#">
-              <!-- Link to our twitter handle-->
-              <i class="bi bi-twitter text-primary fs-4"></i>
-            </a>
-          </li>
-          <li class="ms-3">
-            <a class="link-body-emphasis" href="#">
-              <!-- Link to our instagram page-->
-              <i class="bi bi-instagram fs-4"></i>
-            </a>
-          </li>
-          <li class="ms-3">
-            <a class="link-body-emphasis" href="#">
-              <!-- Link to our facebook page-->
-              <i class="bi bi-facebook text-primary fs-4"></i>
-            </a>
-          </li>
-        </ul>
+        <!-- Copyright -->
+        <div class="col-md-6">
+          Copyright © 2023 by TrekToppers <br>
+          Developed by Aarjav Jani
+        </div>
+        <!-- /Copyright -->
+
+        <!-- Media Handles -->
+        <div class="col-md-6 position-relative">
+          <ul class="list-unstyled d-flex position-absolute end-0 left-on-small">
+            <li class="ms-3">
+              <a class="link-body-emphasis" href="#"> <!-- Link to our twitter handle-->
+                <i class="bi bi-twitter text-primary fs-4 inc-fs-on-small"></i>
+              </a>
+            </li>
+            <li class="ms-3">
+              <a class="link-body-emphasis" href="#"> <!-- Link to our instagram page-->
+                <i class="bi bi-instagram fs-4 inc-fs-on-small"></i>
+              </a>
+            </li>
+            <li class="ms-3">
+              <a class="link-body-emphasis" href="#"> <!-- Link to our facebook page-->
+                <i class="bi bi-facebook text-primary fs-4 inc-fs-on-small"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- /Media Handles -->
       </div>
     </footer>
   </div>
   <!-- /Footer -->
 
-  <!-- Optional JavaScript; choose one of the two! -->
-
   <!-- Bootstrap JS -->
   <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <!-- /Bootstrap JS -->
-  
+
 </body>
 
 </html>
