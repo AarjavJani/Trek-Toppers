@@ -1,0 +1,4 @@
+1. Create Database
+2. PHP Framework
+3. Connect database to website
+4. Merge CSS Files for optimization
