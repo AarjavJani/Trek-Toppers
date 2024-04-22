@@ -1,4 +1,17 @@
+/-----------IMPORTANT-----------/
 1. Create Database
 2. PHP Framework
 3. Connect database to website
 4. Merge CSS Files for optimization
+5. Create User Page
+6. Validation using js
+
+/-----------NON IMPORTANT-----------/
+1. Change Font Everywhere
+2. Create Logo for Navbar
+
+/-----------Trek Page------------/
+3-Modals for Book Ticket Button
+1. Select Persons
+2. Select Date
+3. Select Where to join and your mode of transport to that location.

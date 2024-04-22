@@ -1,11 +1,9 @@
 a.nav-link {
-/* color: black; */
-text-transform: uppercase;
+text-transform: capitalize;
 text-decoration: none;
-letter-spacing: 0.1em;
 
 display: inline-block;
-padding: 2px 20px;
+padding: 2px 9px;
 position: relative;
 }
 

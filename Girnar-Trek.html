@@ -103,19 +103,19 @@
 
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="Images\GirnarTrek\1.jpeg" class="d-block w-100" alt="..." data-bs-interval="10000" />
+          <img src="Images\GirnarTrek\1.jpeg" class="d-block w-100" alt="..." data-bs-interval="8000" />
         </div>
         <div class="carousel-item">
-          <img src="Images\GirnarTrek\2.jpg" class="d-block w-100" alt="..." data-bs-interval="10000" />
+          <img src="Images\GirnarTrek\2.jpg" class="d-block w-100" alt="..." data-bs-interval="8000" />
         </div>
         <div class="carousel-item">
-          <img src="Images\GirnarTrek\3.jpg" class="d-block w-100" alt="..." data-bs-interval="10000" />
+          <img src="Images\GirnarTrek\3.jpg" class="d-block w-100" alt="..." data-bs-interval="8000" />
         </div>
         <div class="carousel-item">
-          <img src="Images\GirnarTrek\4.jpg" class="d-block w-100" alt="..." data-bs-interval="10000" />
+          <img src="Images\GirnarTrek\4.jpg" class="d-block w-100" alt="..." data-bs-interval="8000" />
         </div>
         <div class="carousel-item">
-          <img src="Images\GirnarTrek\5.png" class="d-block w-100" alt="..." data-bs-interval="10000" />
+          <img src="Images\GirnarTrek\5.png" class="d-block w-100" alt="..." data-bs-interval="8000" />
         </div>
       </div>
 
@@ -262,9 +262,58 @@
 
     <!-- Booking button -->
     <div class="d-grid gap-2 col-6 mx-auto mb-5 mt-3">
-      <button class="btn btn-primary fs-4" type="button">Book tickets</button>
+      <button class="btn btn-primary fs-4" type="button" data-bs-toggle="modal" data-bs-target="#DateModal">Book
+        tickets</button>
     </div>
     <!-- /Booking button -->
+
+    <!-- Booking Date modal -->
+    <div class="modal" tabindex="-1" id="DateModal">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Select Date</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="list-group list-group-flush">
+              <button type="button"
+                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                aria-current="true">
+                The current button
+                <span class="badge text-bg-primary rounded-pill">14</span>
+              </button>
+              <button type="button"
+                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">A
+                second button item
+                <span class="badge text-bg-primary rounded-pill">14</span>
+              </button>
+              <button type="button"
+                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">A third
+                button item
+                <span class="badge text-bg-primary rounded-pill">14</span>
+              </button>
+              <button type="button"
+                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">A
+                fourth button item
+                <span class="badge text-bg-primary rounded-pill">14</span>
+              </button>
+              <button type="button"
+                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                disabled>A disabled button item
+                <span class="badge text-bg-primary rounded-pill">Batch Full</span>
+              </button>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Booking Date modal -->
+
   </div>
   <!-- /Content -->
 
