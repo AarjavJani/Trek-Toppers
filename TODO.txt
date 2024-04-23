@@ -5,6 +5,8 @@
 4. Merge CSS Files for optimization
 5. Create User Page
 6. Validation using js
+7. Update Icon CDNs
+8. Create Season Page
 
 /-----------NON IMPORTANT-----------/
 1. Change Font Everywhere
