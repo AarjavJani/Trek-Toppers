@@ -53,6 +53,83 @@
     </nav>
     <!-- /Navbar -->
 
+    <!-- Content -->
+    <div class="container text-center border border-primary">
+        <div class="row mt-5 mx-auto">
+            <div class="col-6 border border-danger">
+                <form action="" class="mx-auto mt-3 border border-black">
+                        <img src="./Images/User/photo.jpg" alt="Profile Image" class="rounded-3 w-25">
+                        <input type="file" accept="image/*">
+                </form>
+            </div>
+            <div class="col-6 border border-success">
+                <p>First Name: Aarjav</p>
+
+                <p>Last Name: Jani</p>
+
+                <p>E-mail: janiaarjav@gmail.com</p>
+
+                <p>Phone No: 9099442552</p>
+
+                <p>Gender: Male</p>
+
+                <!-- Edit button -->
+                <div class="gap-2 mx-auto mb-5 mt-3">
+                    <button class="btn border-1 border-black fs-6" type="button" data-bs-toggle="modal"
+                        data-bs-target="#EditModal">Edit</button>
+                </div>
+                <!-- /Edit button -->
+
+                <!-- Edit modal -->
+                <div class="modal" tabindex="-1" id="EditModal">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Change User Credentials</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="list-group list-group-flush">
+                                    <form action="">
+                                        <!-- FirstName -->
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control rounded-3" id="floatingFname"
+                                                placeholder="First Name">
+                                            <label for="floatingFname">First Name</label>
+                                        </div>
+                                        <!-- /FirstName -->
+
+                                        <!-- LastName -->
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control rounded-3" id="floatingLname"
+                                                placeholder="Last Name">
+                                            <label for="floatingLname">Last Name</label>
+                                        </div>
+                                        <!-- /LastName -->
+
+                                        <!-- PhoneNo -->
+                                        <div class="form-floating mb-3">
+                                            <input type="tel" class="form-control rounded-3" id="floatingPhone"
+                                                placeholder="Phone No" pattern="[0-9]{10}">
+                                            <label for="floatingPhone">Phone No</label>
+                                        </div>
+                                        <!-- /PhoneNo -->
+
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer justify-content-center">
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Booking Date modal -->
+            </div>
+        </div>
+    </div>
+    <!-- /Content -->
 
     <!-- Footer -->
     <div class="container">
