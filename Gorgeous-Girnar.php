@@ -34,13 +34,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
           <li class="nav-item">
-            <a class="nav-link fs-5" aria-current="page" href="./home.html">Home</a>
+            <a class="nav-link fs-5" aria-current="page" href="./home.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5" href="./about.html">About</a>
+            <a class="nav-link fs-5" href="./about.php">About</a>
           </li>
           <li class="nav-item position position-fixed end-0 me-2">
-            <a class="nav-link fs-5 link-light" href="./login.html">Login</a>
+            <a class="nav-link fs-5 link-light" href="./login.php">Login</a>
           </li>
         </ul>
       </div>
@@ -50,10 +50,15 @@
   <!-- /Navbar -->
 
   <!-- Content -->
+  <?php
+  $query = "SELECT t.TrekName, t.Batch_capacity, t.Price, h.Duration FROM trek t INNER JOIN highlights h ON t.Trek_ID = h.Trek_ID WHERE t.Trek_ID=1";
+  $result = mysqli_query($conn, $query);
+  $row = mysqli_fetch_assoc($result);
+  ?>
   <div class="container p-0 px-3 mb-4">
     <!-- Content Heading -->
     <h2 class="border-bottom border-3 border-secondary text-center text-middle mb-0 mt-2 pb-1">
-      Girnar Hiking
+      <?php echo $row['TrekName']; ?>
     </h2>
     <!-- /Content Heading -->
 
@@ -73,13 +78,13 @@
 
       <div class="row">
         <div class="col">
-          <h6>1 Day</h6>
+          <h6><?php echo $row['Duration']; ?></h6>
         </div>
         <div class="col border-start border-end">
-          <h6>20 people</h6>
+          <h6><?php echo $row['Batch_capacity']; ?></h6>
         </div>
         <div class="col">
-          <h6><i class="bi bi-currency-rupee"></i>5,000</h6>
+          <h6><i class="bi bi-currency-rupee"></i><?php echo $row['Price']; ?></h6>
         </div>
       </div>
     </div>
@@ -221,40 +226,74 @@
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Select Date</h5>
+            <h5 class="modal-title">Select Batch</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <div class="list-group list-group-flush">
-              <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" aria-current="true">
-                The current button
-                <span class="badge text-bg-primary rounded-pill">14</span>
-              </button>
-              <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">A
-                second button item
-                <span class="badge text-bg-primary rounded-pill">14</span>
-              </button>
-              <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">A third
-                button item
-                <span class="badge text-bg-primary rounded-pill">14</span>
-              </button>
-              <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">A
-                fourth button item
-                <span class="badge text-bg-primary rounded-pill">14</span>
-              </button>
-              <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" disabled>A disabled button item
-                <span class="badge text-bg-primary rounded-pill">Batch Full</span>
-              </button>
-            </div>
+            <?php
+            // Fetching batches data from the database
+            $query = "SELECT * FROM `batches` WHERE Trek_ID=1";
+            $result = mysqli_query($conn, $query);
+            if (mysqli_num_rows($result) > 0) {
+              echo '<div class="list-group list-group-flush">';
+              $counter = 1;
+
+              // Loop through each batch and display buttons
+              while ($row = mysqli_fetch_assoc($result)) {
+                echo '<div class="list-group list-group-flush">';
+                echo '<div class="form-check list-group-item list-group-item-action">';
+                if ($row['people'] == 20) {
+                  echo '<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault' . $counter . '" disabled>';
+                  echo '<label class="form-check-label d-flex justify-content-between align-items-center" for="flexRadioDefault' . $counter . '">';
+                  echo 'From: ' . $row['from_date'] . ' To: ' . $row['to_date'];
+                  echo '<span class="badge text-bg-primary rounded-pill">Batch Full</span>';
+                } else {
+                  echo '<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault' . $counter . '">';
+                  echo '<label class="form-check-label d-flex justify-content-between align-items-center" for="flexRadioDefault' . $counter . '">';
+                  echo 'From: ' . $row['from_date'] . ' To: ' . $row['to_date'];
+                  echo '<span class="badge text-bg-primary rounded-pill">' . $row['people'] . '</span>';
+                }
+                echo '</label></div></div>';
+                $counter++;
+              }
+              echo '</div>';
+            } else {
+              echo "No batches found.";
+            }
+            ?>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#PayModal">Select</button>
           </div>
         </div>
       </div>
     </div>
     <!-- /Booking Date modal -->
+
+    <!-- Pay modal -->
+    <div class="modal" tabindex="-1" id="PayModal">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Pay</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group mb-3">
+              <span class="input-group-text">Rs</span>
+              <input type="number" class="form-control" aria-label="Amount">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#DateModal">Back</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="">Proceed to Pay</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Pay modal -->
+
 
   </div>
   <!-- /Content -->
@@ -272,10 +311,10 @@
                 <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
               </li>
               <li class="breadcrumb-item">
-                <a href="contact.html" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
+                <a href="contact.php" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
               </li>
               <li class="breadcrumb-item">
-                <a href="about.html" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
+                <a href="about.php" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
               </li>
               <li class="breadcrumb-item">
                 <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">FAQs</a>

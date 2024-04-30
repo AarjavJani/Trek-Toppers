@@ -22,11 +22,40 @@
 </head>
 
 <body>
-<?php
-    $sql = "SELECT * FROM `user` WHERE user_id = 'janiaarjav'";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result)
+    <?php
+
+    // Insert values into database
+    
+
     ?>
+
+<?php
+// Assuming you have already established a connection to your MySQL database
+// and stored it in $conn variable.
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pay'])) {
+    // Retrieving the selected batch ID from the form
+    $batch_id = $_POST['batch_id'];
+    
+    // Retrieving the amount from the form
+    $amount = $_POST['amount'];
+
+    // Retrieving the TrekID from the form
+    $Trek_ID = $_POST['Trek_ID'];
+
+    
+    // Your SQL query to insert the values into the database
+    $sql = "INSERT INTO payments (payment_amount, batch_id ,Trek_ID,payment_status) VALUES ('$amount', '$batchId', '$Trek_ID','')";
+    
+    // Executing the query
+    if (mysqli_query($conn, $query)) {
+        echo "Booking successful!";
+    } else {
+        echo "Error: " . $query . "<br>" . mysqli_error($conn);
+    }
+}
+?>
+
 
 </body>
 

@@ -23,7 +23,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-md bg-body-tertiary bg-light navbar-light" data-bs-theme="light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="home.html">
+      <a class="navbar-brand" href="home.php">
         <img src="Images\logo\logo.svg" alt="TrekToppers Logo" width="100px" />
       </a>
 
@@ -34,16 +34,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link fs-5" aria-current="page" href="home.html"><b>Home</b></a>
+            <a class="nav-link fs-5" aria-current="page" href="home.php"><b>Home</b></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5" href="about.html"><b>About</b></a>
+            <a class="nav-link fs-5" href="about.php"><b>About</b></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5" href="contact.html"><b>Contact Us</b></a>
+            <a class="nav-link fs-5" href="contact.php"><b>Contact Us</b></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5" href="login.html"><b>LogIn</b></a>
+            <a class="nav-link fs-5" href="login.php"><b>LogIn</b></a>
           </li>
         </ul>
       </div>
@@ -232,13 +232,13 @@
           <nav style="--bs-breadcrumb-divider: '|'" aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="home.html" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
+                <a href="home.php" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
               </li>
               <li class="breadcrumb-item">
-                <a href="contact.html" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
+                <a href="contact.php" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
               </li>
               <li class="breadcrumb-item">
-                <a href="about.html" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
+                <a href="about.php" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
               </li>
               <li class="breadcrumb-item">
                 <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">FAQs</a>

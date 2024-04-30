@@ -14,21 +14,29 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <!-- /Icon CDN -->
 
-  <title>Log In | TrekToppers</title>
+  <title>SignUp | TrekToppers</title>
 </head>
 
 <body>
+  <!-- BACKGROUND NEEDS AN IMAGE -->
 
   <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog"
     id="modalSignin">
     <div class="modal-dialog" role="document">
       <div class="modal-content rounded-4 shadow">
         <div class="modal-header p-5 pb-4 border-bottom-0 d-flex justify-content-center">
-          <h1 class="fw-bold mb-0 fs-1">Log In</h1>
+          <h1 class="fw-bold mb-0 fs-1">Sign Up</h1>
         </div>
 
         <div class="modal-body p-5 pt-0">
           <form class="">
+            <!-- Name -->
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control rounded-3" id="floatingInput" placeholder="Name">
+              <label for="floatingInput">Name</label>
+            </div>
+            <!-- /Name -->
+
             <!-- E-mail -->
             <div class="form-floating mb-3">
               <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
@@ -43,12 +51,21 @@
             </div>
             <!-- /Password -->
 
-            <!-- Login button -->
-            <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Log In</button>
-            <!-- /Login button -->
+            <!-- Confirm Password -->
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control rounded-3" id="floatingPassword"
+                placeholder="Confirm Password">
+              <label for="floatingPassword">Confirm Password</label>
+            </div>
+            <!-- /Confirm Password -->
+
+            <!-- Signup button -->
+            <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Sign Up</button>
+            <!-- /Signup button -->
 
             <!-- terms of service text -->
-            <small class="text-body-secondary">Don't have an account? <a href="signup.html">Signup</a> instead.</small>
+            <small class="text-body-secondary">Already have an account? Try <a href="login.php">Logging in</a>
+              instead.</small>
             <!-- /terms of service text -->
 
             <!-- divider -->
@@ -93,6 +110,7 @@
     </div>
   </div>
 
+  <!-- Optional JavaScript; choose one of the two! -->
 
   <!-- Bootstrap JS -->
   <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

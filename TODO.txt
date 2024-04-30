@@ -14,6 +14,5 @@
 
 /-----------Trek Page------------/
 3-Modals for Book Ticket Button
-1. Select Persons (Maybe Remove)
 2. Select Date
 3. Select Where to join and your mode of transport to that location.
