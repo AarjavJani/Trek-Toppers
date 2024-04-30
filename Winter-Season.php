@@ -51,63 +51,54 @@
     </nav>
     <!-- /Navbar -->
 
-    <?php
-    $sql = "SELECT Trek.TrekName,Trek.Location,Trek.Price,Trek.Season,highlights.Duration
-    FROM Trek
-    INNER JOIN highlights ON Trek.Trek_ID = highlights.Trek_ID
-    WHERE Trek.Season = 'Winter'";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
-    ?>
-    <h1 class="display-6 mt-3 ms-5 mb-2"><?php echo $row['Trek.Season'] ?> Season Treks:</h1>
-    <!-- Cards -->
-    <div class="row row-cols-1 row-cols-md-4 g-3 mx-5">
-        <?php
-        if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                // Determine file extension based on availability of image files
-                $image_extensions = ['png', 'jpg', 'jpeg'];
-                $image_path = '';
-                foreach ($image_extensions as $ext) {
-                    $file_path = 'Images\Cards\\' . strtolower(str_replace(' ', '-', $row['TrekName'])) . '.' . $ext;
-                    if (file_exists($file_path)) {
-                        $image_path = $file_path;
-                        break;
-                    }
-                }
-        ?>
-                <div class="col">
-                    <div class="card h-100">
-                        <!-- Assuming your image paths are correct -->
-                        <a href="<?php echo str_replace(' ', '-', $row['TrekName']); ?>.php">
-                            <img src="<?php echo $image_path; ?>" class="card-img-top" alt="Trek Thumbnail">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $row["TrekName"]; ?></h5>
-                            <p><i class="bi bi-geo-alt"></i><?php echo $row["Location"]; ?></p><br>
-                            <ul class="list-group list-group-horizontal">
-                                <li class="list-group-item border-0 position-absolute bottom-0 start-0"><?php echo $row[4]; ?></li>
-                                <li class="list-group-item border-0 position-absolute bottom-0 end-0">
-                                    <i class="bi bi-currency-rupee"></i><?php echo $row["Price"]; ?>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-        <?php
-            }
-        } else {
-            echo "No treks found!";
+<!-- Cards -->
+<h1 class="display-6 mt-3 ms-5">Winter Season Treks:</h1>
+<div class="row row-cols-1 row-cols-md-4 g-3 mx-5">
+  <?php
+  // Assuming $conn is your MySQLi connection
+  $sql = "SELECT t.TrekName, t.Location, t.Price, t.Season, h.Duration FROM Trek t JOIN highlights h ON t.Trek_ID = h.Trek_ID WHERE t.Season = 'Winter' ";
+  $result = mysqli_query($conn, $sql);
+
+  if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+      // Determine file extension based on availability of image files
+      $image_extensions = ['png', 'jpg', 'jpeg'];
+      $image_path = '';
+      foreach ($image_extensions as $ext) {
+        $file_path = 'Images\Cards\\' . strtolower(str_replace(' ', '-', $row['TrekName'])) . '.' . $ext;
+        if (file_exists($file_path)) {
+          $image_path = $file_path;
+          break;
         }
+      }
+  ?>
+      <div class="col">
+        <div class="card h-100">
+          <!-- Assuming your image paths are correct -->
+          <a href="<?php echo str_replace(' ', '-', $row['TrekName']); ?>.php">
+            <img src="<?php echo $image_path; ?>" class="card-img-top" alt="Trek Thumbnail">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title"><?php echo $row["TrekName"]; ?></h5>
+            <p><i class="bi bi-geo-alt"></i><?php echo $row["Location"]; ?></p><br>
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item border-0 position-absolute bottom-0 start-0"><?php echo $row["Duration"]; ?></li>
+              <li class="list-group-item border-0 position-absolute bottom-0 end-0">
+                <i class="bi bi-currency-rupee"></i><?php echo $row["Price"]; ?>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  <?php
+    }
+  } else {
+    echo "No treks found!";
+  }
 
-        // Free result set
-        mysqli_free_result($result);
-
-        // Close connection
-        mysqli_close($conn);
-        ?>
-    </div>
-    <!-- /Cards -->
+  ?>
+</div>
+<!-- /Cards -->
 
     <!-- Footer -->
     <div class="container">

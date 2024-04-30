@@ -168,9 +168,8 @@
         <img src="Images\Cards\Summer_season.png" class="card-img-top rounded-1" alt="Summer Trek Thumbnail">
         <div class="card-img-overlay">
           <div class="position-absolute top-50 start-50 translate-middle">
-            <!-- <button type="button" class="btn btn-outline-dark btn-lg" onclick="window.open('./Season.php',_self)"><p class="card-text">Summer</p></button> -->
             <p class="card-text">
-              <button type="button" class="btn btn-outline-dark btn-lg" onclick="window.open('./Season.php','_self')">
+              <button type="button" class="btn btn-outline-dark btn-lg" onclick="window.open('./Summer-Season.php','_self')">
                 Summer</button>
             </p>
           </div>
@@ -183,7 +182,7 @@
         <img src="Images\Cards\rainy_season.jpeg" class="card-img-top rounded-1" alt="Monsoon Trek Thumbnail">
         <div class="card-img-overlay">
           <div class="position-absolute top-50 start-50 translate-middle">
-            <p class="card-text"><button type="button" class="btn btn-outline-dark btn-lg" onclick="window.open('./Season.php','_self')">Monsoon</button></p>
+            <p class="card-text"><button type="button" class="btn btn-outline-dark btn-lg" onclick="window.open('./Monsoon-Season.php','_self')">Monsoon</button></p>
           </div>
         </div>
       </div>
@@ -194,7 +193,7 @@
         <img src="Images\Cards\winter_season.png" class="card-img-top rounded-1" alt="Winter Trek Thumbnail">
         <div class="card-img-overlay">
           <div class="position-absolute top-50 start-50 translate-middle">
-            <p class="card-text"><button type="button" class="btn btn-outline-dark btn-lg" onclick="window.open('./Season.php','_self')">Winter</button></p>
+            <p class="card-text"><button type="button" class="btn btn-outline-dark btn-lg" onclick="window.open('./Winter-Season.php','_self')">Winter</button></p>
           </div>
         </div>
       </div>
