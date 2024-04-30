@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="./style/navbar-link.css">
   <link rel="stylesheet" href="./style/navbar-toggler.css">
   <link rel="stylesheet" href="./style/footer-media-handles.css">
-
+  <?php include "./db_connection.php" ?>
   <title>TrekToppers</title>
 </head>
 
@@ -27,9 +27,7 @@
   <nav class="navbar navbar-expand-md sticky-top bg-body-secondary bg-light navbar-light" data-bs-theme="dark">
     <div class="container-fluid">
 
-      <button class="navbar-toggler" onclick="this.classList.toggle('change')" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-        aria-label="Toggle navigation">
+      <button class="navbar-toggler" onclick="this.classList.toggle('change')" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <div class="bar"></div>
         <div class="bar"></div>
         <div class="bar"></div>
@@ -41,10 +39,10 @@
             <a class="nav-link fs-5 active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5" href="./about.html">About</a>
+            <a class="nav-link fs-5" href="./about.php">About</a>
           </li>
           <li class="nav-item position position-fixed end-0 me-2">
-            <a class="nav-link fs-5 link-light" href="./login.html">Login</a>
+            <a class="nav-link fs-5 link-light" href="./login.php">Login</a>
           </li>
         </ul>
       </div>
@@ -57,8 +55,7 @@
   <div id="carousel" class="carousel slide" data-bs-ride="carousel">
     <!-- carousel indicators -->
     <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true"
-        aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
       <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
       <button type="button" data-bs-target="#carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
@@ -117,78 +114,49 @@
   <h1 class="display-6 mt-3 ms-5">Trending Treks:</h1>
   <!-- Cards -->
   <div class="row row-cols-1 row-cols-md-4 g-3 mx-5">
+    <?php
+    // Assuming $conn is your MySQLi connection
+    $sql = "SELECT TrekName, Location, Price FROM Trek";
+    $result = mysqli_query($conn, $sql);
 
-    <div class="col">
-      <div class="card h-100">
-        <a href="Chadar-Trek.html">
-          <img src="Images\Cards\chadar trek.png" class="card-img-top" alt="Trek Thumbnail">
-        </a>
-        <div class="card-body">
-          <h5 class="card-title">Chadar Trek</h5>
-          <p><i class="bi bi-geo-alt"></i>Laddakh, India</p><br>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item border-0 position-absolute bottom-0 start-0">9 Nights, 10Days</li>
-            <li class="list-group-item border-0 position-absolute bottom-0 end-0">
-              <i class="bi bi-currency-rupee"></i>20,000
-            </li>
-          </ul>
+    if (mysqli_num_rows($result) > 0) {
+      while ($row = mysqli_fetch_assoc($result)) {
+        // Determine file extension based on availability of image files
+        $image_extensions = ['png', 'jpg', 'jpeg'];
+        $image_path = '';
+        foreach ($image_extensions as $ext) {
+          $file_path = 'Images\Cards\\' . strtolower(str_replace(' ', '-', $row['TrekName'])) . '.' . $ext;
+          if (file_exists($file_path)) {
+            $image_path = $file_path;
+            break;
+          }
+        }
+    ?>
+        <div class="col">
+          <div class="card h-100">
+            <!-- Assuming your image paths are correct -->
+            <a href="<?php echo str_replace(' ', '-', $row['TrekName']); ?>.php">
+              <img src="<?php echo $image_path; ?>" class="card-img-top" alt="Trek Thumbnail">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title"><?php echo $row["TrekName"]; ?></h5>
+              <p><i class="bi bi-geo-alt"></i><?php echo $row["Location"]; ?></p><br>
+              <ul class="list-group list-group-horizontal">
+                <li class="list-group-item border-0 position-absolute bottom-0 start-0">9 Nights, 10 Days</li>
+                <li class="list-group-item border-0 position-absolute bottom-0 end-0">
+                  <i class="bi bi-currency-rupee"></i><?php echo $row["Price"]; ?>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+    <?php
+      }
+    } else {
+      echo "No treks found!";
+    }
 
-    <div class="col">
-      <div class="card h-100">
-        <a href="Kedarkantha-Trek.html">
-          <img src="Images\Cards\Kedarkantha-Peak.jpg" class="card-img-top" alt="Trek Thumbnail">
-        </a>
-        <div class="card-body ">
-          <h5 class="card-title">Kedarkantha Peak</h5>
-          <p><i class="bi bi-geo-alt"></i>Uttarakhand, India</p><br>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item border-0 position-absolute bottom-0 start-0">8 night, 9 Days</li>
-            <li class="list-group-item border-0 position-absolute bottom-0 end-0">
-              <i class="bi bi-currency-rupee"></i>14,000
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100">
-        <a href="Valley-of-Flowers-Trek.html">
-          <img src="Images\Cards\valley of flowers.jpeg" class="card-img-top" alt="Trek Thumbnail">
-        </a>
-        <div class="card-body ">
-          <h5 class="card-title">Valley of Flowers</h5>
-          <p><i class="bi bi-geo-alt"></i>Valley of Flowers national Park, Uttarakhand, India</p><br>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item border-0 position-absolute bottom-0 start-0">6 Nights, 7 Days</li>
-            <li class="list-group-item border-0 position-absolute bottom-0 end-0">
-              <i class="bi bi-currency-rupee"></i>11,000
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100">
-        <a href="Girnar-Trek.html">
-          <img src="Images\Cards\girnar.jpg" class="card-img-top" alt="Trek Thumbnail">
-        </a>
-        <div class="card-body ">
-          <h5 class="card-title">Gorgeous Girnar</h5>
-          <p><i class="bi bi-geo-alt"></i>Girnar Hills, Gujarat, India</p><br>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item border-0 position-absolute bottom-0 start-0">1 Day</li>
-            <li class="list-group-item border-0 position-absolute bottom-0 end-0">
-              <i class="bi bi-currency-rupee"></i>5,000
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    ?>
   </div>
   <!-- /Cards -->
 
@@ -200,9 +168,9 @@
         <img src="Images\Cards\Summer_season.png" class="card-img-top rounded-1" alt="Summer Trek Thumbnail">
         <div class="card-img-overlay">
           <div class="position-absolute top-50 start-50 translate-middle">
-            <!-- <button type="button" class="btn btn-outline-dark btn-lg" onclick="window.open('./Season.html',_self)"><p class="card-text">Summer</p></button> -->
+            <!-- <button type="button" class="btn btn-outline-dark btn-lg" onclick="window.open('./Season.php',_self)"><p class="card-text">Summer</p></button> -->
             <p class="card-text">
-              <button type="button" class="btn btn-outline-dark btn-lg" onclick="window.open('./Season.html','_self')">
+              <button type="button" class="btn btn-outline-dark btn-lg" onclick="window.open('./Season.php','_self')">
                 Summer</button>
             </p>
           </div>
@@ -215,8 +183,7 @@
         <img src="Images\Cards\rainy_season.jpeg" class="card-img-top rounded-1" alt="Monsoon Trek Thumbnail">
         <div class="card-img-overlay">
           <div class="position-absolute top-50 start-50 translate-middle">
-            <p class="card-text"><button type="button" class="btn btn-outline-dark btn-lg"
-                onclick="window.open('./Season.html','_self')">Monsoon</button></p>
+            <p class="card-text"><button type="button" class="btn btn-outline-dark btn-lg" onclick="window.open('./Season.php','_self')">Monsoon</button></p>
           </div>
         </div>
       </div>
@@ -227,8 +194,7 @@
         <img src="Images\Cards\winter_season.png" class="card-img-top rounded-1" alt="Winter Trek Thumbnail">
         <div class="card-img-overlay">
           <div class="position-absolute top-50 start-50 translate-middle">
-            <p class="card-text"><button type="button" class="btn btn-outline-dark btn-lg"
-                onclick="window.open('./Season.html','_self')">Winter</button></p>
+            <p class="card-text"><button type="button" class="btn btn-outline-dark btn-lg" onclick="window.open('./Season.php','_self')">Winter</button></p>
           </div>
         </div>
       </div>
@@ -250,10 +216,10 @@
                 <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
               </li>
               <li class="breadcrumb-item">
-                <a href="contact.html" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
+                <a href="contact.php" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
               </li>
               <li class="breadcrumb-item">
-                <a href="about.html" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
+                <a href="about.php" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
               </li>
               <li class="breadcrumb-item">
                 <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">FAQs</a>

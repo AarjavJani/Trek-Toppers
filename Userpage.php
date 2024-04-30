@@ -13,7 +13,7 @@
     <!-- Icon CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- /Icon CDN -->
-
+<?php include './db_connection.php' ?>
     <link rel="stylesheet" href="./style/navbar-link.css">
     <link rel="stylesheet" href="./style/navbar-toggler.css">
     <link rel="stylesheet" href="./style/footer-media-handles.css">
@@ -27,9 +27,7 @@
     <nav class="navbar navbar-expand-md sticky-top bg-body-secondary bg-light navbar-light" data-bs-theme="dark">
         <div class="container-fluid">
 
-            <button class="navbar-toggler" onclick="this.classList.toggle('change')" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" onclick="this.classList.toggle('change')" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -38,13 +36,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
                     <li class="nav-item">
-                        <a class="nav-link fs-5" aria-current="page" href="./home.html">Home</a>
+                        <a class="nav-link fs-5" aria-current="page" href="./home.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="./about.html">About</a>
+                        <a class="nav-link fs-5" href="./about.php">About</a>
                     </li>
                     <li class="nav-item position position-fixed end-0 me-2">
-                        <a class="nav-link fs-5 link-light" href="./login.html">Login</a>
+                        <a class="nav-link fs-5 link-light" href="./login.php">Login</a>
                     </li>
                 </ul>
             </div>
@@ -54,29 +52,31 @@
     <!-- /Navbar -->
 
     <!-- Content -->
-    <div class="container text-center border border-primary">
+    <div class="container text-center">
         <div class="row mt-5 mx-auto">
-            <div class="col-6 border border-danger">
-                <form action="" class="mx-auto mt-3 border border-black">
-                        <img src="./Images/User/photo.jpg" alt="Profile Image" class="rounded-3 w-25">
-                        <input type="file" accept="image/*">
+            <div class="col-6">
+                <form action="" class="mx-auto mt-3">
+                    <img src="./Images/User/photo.jpg" alt="Profile Image" class="rounded-3 w-25">
+                    <input type="file" accept="image/*">
                 </form>
             </div>
-            <div class="col-6 border border-success">
-                <p>First Name: Aarjav</p>
+            <div class="col-6 text-start">
+                <?php
+                $sql = "SELECT * FROM `user` WHERE user_id = 'janiaarjav'";
+                $result = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_assoc($result);
+                ?>
+                <p>Name: <?php echo $row['firstname'] . ' ' . $row['lastname']; ?></p>
 
-                <p>Last Name: Jani</p>
+                <p>E-mail: <?php echo $row['email']; ?></p>
 
-                <p>E-mail: janiaarjav@gmail.com</p>
+                <p>Phone No: <?php echo $row['phoneno']; ?></p>
 
-                <p>Phone No: 9099442552</p>
-
-                <p>Gender: Male</p>
+                <p>Gender: <?php echo $row['gender']; ?></p>
 
                 <!-- Edit button -->
                 <div class="gap-2 mx-auto mb-5 mt-3">
-                    <button class="btn border-1 border-black fs-6" type="button" data-bs-toggle="modal"
-                        data-bs-target="#EditModal">Edit</button>
+                    <button class="btn border-1 border-black fs-6" type="button" data-bs-toggle="modal" data-bs-target="#EditModal">Edit</button>
                 </div>
                 <!-- /Edit button -->
 
@@ -86,32 +86,28 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Change User Credentials</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="list-group list-group-flush">
                                     <form action="">
                                         <!-- FirstName -->
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control rounded-3" id="floatingFname"
-                                                placeholder="First Name">
+                                            <input type="text" class="form-control rounded-3" id="floatingFname" placeholder="First Name">
                                             <label for="floatingFname">First Name</label>
                                         </div>
                                         <!-- /FirstName -->
 
                                         <!-- LastName -->
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control rounded-3" id="floatingLname"
-                                                placeholder="Last Name">
+                                            <input type="text" class="form-control rounded-3" id="floatingLname" placeholder="Last Name">
                                             <label for="floatingLname">Last Name</label>
                                         </div>
                                         <!-- /LastName -->
 
                                         <!-- PhoneNo -->
                                         <div class="form-floating mb-3">
-                                            <input type="tel" class="form-control rounded-3" id="floatingPhone"
-                                                placeholder="Phone No" pattern="[0-9]{10}">
+                                            <input type="tel" class="form-control rounded-3" id="floatingPhone" placeholder="Phone No" pattern="[0-9]{10}">
                                             <label for="floatingPhone">Phone No</label>
                                         </div>
                                         <!-- /PhoneNo -->
@@ -144,12 +140,10 @@
                                 <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="contact.html"
-                                    class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
+                                <a href="contact.php" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="about.html"
-                                    class="text-body-secondary link-underline link-underline-opacity-0">About</a>
+                                <a href="about.php" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">FAQs</a>

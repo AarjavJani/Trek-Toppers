@@ -36,16 +36,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
           <li class="nav-item">
-            <a class="nav-link fs-5" aria-current="page" href="./home.html">Home</a>
+            <a class="nav-link fs-5" aria-current="page" href="./home.php">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link fs-5 active" href="#">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5" href="./contact.html">Contact Us</a>
+            <a class="nav-link fs-5" href="./contact.php">Contact Us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5" href="./login.html">Login</a>
+            <a class="nav-link fs-5" href="./login.php">Login</a>
           </li>
         </ul>
       </div>
@@ -98,10 +98,10 @@
                 <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
               </li>
               <li class="breadcrumb-item">
-                <a href="contact.html" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
+                <a href="contact.php" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
               </li>
               <li class="breadcrumb-item">
-                <a href="about.html" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
+                <a href="about.php" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
               </li>
               <li class="breadcrumb-item">
                 <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">FAQs</a>

@@ -13,7 +13,7 @@
     <!-- Icon CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- /Icon CDN -->
-
+    <?php include './db_connection.php' ?>
     <link rel="stylesheet" href="./style/navbar-link.css">
     <link rel="stylesheet" href="./style/navbar-toggler.css">
     <link rel="stylesheet" href="./style/footer-media-handles.css">
@@ -27,9 +27,7 @@
     <nav class="navbar navbar-expand-md sticky-top bg-body-secondary bg-light navbar-light" data-bs-theme="dark">
         <div class="container-fluid">
 
-            <button class="navbar-toggler" onclick="this.classList.toggle('change')" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" onclick="this.classList.toggle('change')" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -38,13 +36,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
                     <li class="nav-item">
-                        <a class="nav-link fs-5" aria-current="page" href="./home.html">Home</a>
+                        <a class="nav-link fs-5" aria-current="page" href="./home.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="./about.html">About</a>
+                        <a class="nav-link fs-5" href="./about.php">About</a>
                     </li>
                     <li class="nav-item position position-fixed end-0 me-2">
-                        <a class="nav-link fs-5 link-light" href="./login.html">Login</a>
+                        <a class="nav-link fs-5 link-light" href="./login.php">Login</a>
                     </li>
                 </ul>
             </div>
@@ -53,81 +51,61 @@
     </nav>
     <!-- /Navbar -->
 
-    <h1 class="display-6 mt-3 ms-5 mb-2">__ Season Treks:</h1>
+    <?php
+    $sql = "SELECT Trek.TrekName,Trek.Location,Trek.Price,Trek.Season,highlights.Duration
+    FROM Trek
+    INNER JOIN highlights ON Trek.Trek_ID = highlights.Trek_ID
+    WHERE Trek.Season = 'Winter'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    ?>
+    <h1 class="display-6 mt-3 ms-5 mb-2"><?php echo $row['Trek.Season'] ?> Season Treks:</h1>
     <!-- Cards -->
     <div class="row row-cols-1 row-cols-md-4 g-3 mx-5">
-
-        <div class="col">
-            <div class="card h-100">
-                <a href="Chadar-Trek.html">
-                    <img src="Images\Cards\chadar trek.png" class="card-img-top" alt="Trek Thumbnail">
-                </a>
-                <div class="card-body">
-                    <h5 class="card-title">Chadar Trek</h5>
-                    <p><i class="bi bi-geo-alt"></i>Laddakh, India</p><br>
-                    <ul class="list-group list-group-horizontal">
-                        <li class="list-group-item border-0 position-absolute bottom-0 start-0">9 Nights, 10Days</li>
-                        <li class="list-group-item border-0 position-absolute bottom-0 end-0">
-                            <i class="bi bi-currency-rupee"></i>20,000
-                        </li>
-                    </ul>
+        <?php
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                // Determine file extension based on availability of image files
+                $image_extensions = ['png', 'jpg', 'jpeg'];
+                $image_path = '';
+                foreach ($image_extensions as $ext) {
+                    $file_path = 'Images\Cards\\' . strtolower(str_replace(' ', '-', $row['TrekName'])) . '.' . $ext;
+                    if (file_exists($file_path)) {
+                        $image_path = $file_path;
+                        break;
+                    }
+                }
+        ?>
+                <div class="col">
+                    <div class="card h-100">
+                        <!-- Assuming your image paths are correct -->
+                        <a href="<?php echo str_replace(' ', '-', $row['TrekName']); ?>.php">
+                            <img src="<?php echo $image_path; ?>" class="card-img-top" alt="Trek Thumbnail">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $row["TrekName"]; ?></h5>
+                            <p><i class="bi bi-geo-alt"></i><?php echo $row["Location"]; ?></p><br>
+                            <ul class="list-group list-group-horizontal">
+                                <li class="list-group-item border-0 position-absolute bottom-0 start-0"><?php echo $row[4]; ?></li>
+                                <li class="list-group-item border-0 position-absolute bottom-0 end-0">
+                                    <i class="bi bi-currency-rupee"></i><?php echo $row["Price"]; ?>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+        <?php
+            }
+        } else {
+            echo "No treks found!";
+        }
 
-        <div class="col">
-            <div class="card h-100">
-                <a href="Kedarkantha-Trek.html">
-                    <img src="Images\Cards\Kedarkantha-Peak.jpg" class="card-img-top" alt="Trek Thumbnail">
-                </a>
-                <div class="card-body ">
-                    <h5 class="card-title">Kedarkantha Peak</h5>
-                    <p><i class="bi bi-geo-alt"></i>Uttarakhand, India</p><br>
-                    <ul class="list-group list-group-horizontal">
-                        <li class="list-group-item border-0 position-absolute bottom-0 start-0">8 night, 9 Days</li>
-                        <li class="list-group-item border-0 position-absolute bottom-0 end-0">
-                            <i class="bi bi-currency-rupee"></i>14,000
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        // Free result set
+        mysqli_free_result($result);
 
-        <div class="col">
-            <div class="card h-100">
-                <a href="Valley-of-Flowers-Trek.html">
-                    <img src="Images\Cards\valley of flowers.jpeg" class="card-img-top" alt="Trek Thumbnail">
-                </a>
-                <div class="card-body ">
-                    <h5 class="card-title">Valley of Flowers</h5>
-                    <p><i class="bi bi-geo-alt"></i>Valley of Flowers national Park, Uttarakhand, India</p><br>
-                    <ul class="list-group list-group-horizontal">
-                        <li class="list-group-item border-0 position-absolute bottom-0 start-0">6 Nights, 7 Days</li>
-                        <li class="list-group-item border-0 position-absolute bottom-0 end-0">
-                            <i class="bi bi-currency-rupee"></i>11,000
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card h-100">
-                <a href="Girnar-Trek.html">
-                    <img src="Images\Cards\girnar.jpg" class="card-img-top" alt="Trek Thumbnail">
-                </a>
-                <div class="card-body ">
-                    <h5 class="card-title">Gorgeous Girnar</h5>
-                    <p><i class="bi bi-geo-alt"></i>Girnar Hills, Gujarat, India</p><br>
-                    <ul class="list-group list-group-horizontal">
-                        <li class="list-group-item border-0 position-absolute bottom-0 start-0">1 Day</li>
-                        <li class="list-group-item border-0 position-absolute bottom-0 end-0">
-                            <i class="bi bi-currency-rupee"></i>5,000
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        // Close connection
+        mysqli_close($conn);
+        ?>
     </div>
     <!-- /Cards -->
 
@@ -144,12 +122,10 @@
                                 <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="contact.html"
-                                    class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
+                                <a href="contact.php" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="about.html"
-                                    class="text-body-secondary link-underline link-underline-opacity-0">About</a>
+                                <a href="about.php" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">FAQs</a>

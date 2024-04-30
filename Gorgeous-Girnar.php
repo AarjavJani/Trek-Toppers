@@ -16,37 +16,36 @@
   <!-- /Icon CDN -->
   <link rel="stylesheet" href="./style/navbar-link.css">
   <link rel="stylesheet" href="./style/navbar-toggler.css">
+  <?php include "./db_connection.php" ?>
 
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-md sticky-top bg-body-secondary bg-light navbar-light" data-bs-theme="dark">
-      <div class="container-fluid">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-md sticky-top bg-body-secondary bg-light navbar-light" data-bs-theme="dark">
+    <div class="container-fluid">
 
-          <button class="navbar-toggler" onclick="this.classList.toggle('change')" type="button"
-              data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <div class="bar"></div>
-              <div class="bar"></div>
-              <div class="bar"></div>
-          </button>
+      <button class="navbar-toggler" onclick="this.classList.toggle('change')" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
-                  <li class="nav-item">
-                      <a class="nav-link fs-5" aria-current="page" href="./home.html">Home</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link fs-5" href="./about.html">About</a>
-                  </li>
-                  <li class="nav-item position position-fixed end-0 me-2">
-                      <a class="nav-link fs-5 link-light" href="./login.html">Login</a>
-                  </li>
-              </ul>
-          </div>
-
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
+          <li class="nav-item">
+            <a class="nav-link fs-5" aria-current="page" href="./home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-5" href="./about.html">About</a>
+          </li>
+          <li class="nav-item position position-fixed end-0 me-2">
+            <a class="nav-link fs-5 link-light" href="./login.html">Login</a>
+          </li>
+        </ul>
       </div>
+
+    </div>
   </nav>
   <!-- /Navbar -->
 
@@ -90,8 +89,7 @@
     <div id="carousel" class="carousel slide" data-bs-ride="carousel">
       <!-- carousel indicators -->
       <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true"
-          aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
         <button type="button" data-bs-target="#carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
@@ -132,131 +130,84 @@
 
     <!-- Overview -->
     <h1 class="display-6">Overview</h1>
-    <p>
-      Mount Girnar is older than the Himalayas and the Jain temples upon it
-      are amongst the most ancient in the country. The base of the mountain,
-      known as Girnar Taleti, is about 4 km east of the center of Junagadh.
-      Girnar – a group of mountains in the Junagadh district of Gujarat are a
-      haven for thrill seekers and religious devotees alike due to their
-      ability to be both – a hub for religious activity and also a retreat for
-      trekkers, because of the hills that lead up to splendid views.
+    <?php
+    $sql = "SELECT Overview from Trek where Trek_ID=1";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+      // Fetch the result as an associative array
+      $row = mysqli_fetch_assoc($result);
+    }
+    ?>
+    <p><?php echo $row['Overview'] ?>
     </p>
     <!-- /Overview -->
 
     <!-- Highlights -->
     <h1 class="display-6">Highlights</h1>
+    <?php
+    $sql = "SELECT Trip_Nature, Duration, Interests, Best_time, start_point, end_point, meeting_point from highlights where Trek_ID=1";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+      // Fetch the result as an associative array
+      $row = mysqli_fetch_assoc($result);
+    }
+    ?>
+
     <ul>
-      <li>NATURE OF TRIP : Hiking</li>
-      <li>DURATION : 1 Day</li>
+      <li>NATURE OF TRIP : <?php echo $row['Trip_Nature'] ?></li>
+      <li>DURATION : <?php echo $row['Duration'] ?></li>
       <li>
-        WHO CAN JOIN : Open for Solo Travellers, Couples, Group of Friends &
-        Families
+        INTRESTS: <?php echo $row['Interests'] ?>
       </li>
-      <li>BEST TIME : July to October</li>
-      <li>START POINT : Junagadh/Hometown</li>
-      <li>END POINT : Junagadh/Hometown</li>
-      <li>MEETING POINT : Grinar Taleti</li>
+      <li>BEST TIME : <?php echo $row['Best_time'] ?></li>
+      <li>START POINT : <?php echo $row['start_point'] ?></li>
+      <li>END POINT : <?php echo $row['end_point'] ?></li>
+      <li>MEETING POINT : <?php echo $row['meeting_point'] ?></li>
     </ul>
     <!-- /Highlights -->
 
     <!-- Itinerary -->
     <h1 class="display-6">Itinerary</h1>
-
     <div class="accordion" id="accordionExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-            aria-expanded="true" aria-controls="collapseOne">
-            GIRNAR HIKING THRILL
-          </button>
-        </h2>
+      <?php
+      $sql = "SELECT * FROM itinerary where Trek_ID=1";
+      $result = mysqli_query($conn, $sql);
 
-        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <img src="Images\GirnarTrek\itinerary1.jpeg" alt="" class="w-50" />
-            <ul class="">
-              <li>
-                10:00 AM : Arrival at Junagadh, greet and meet at Bhavnath
-                Taleti.
-              </li>
-              <li>
-                12:00 PM : After Damo Kund bathing refreshment, take lunch at
-                hotel then depart for most awaited trek from Bhavnath Taleti –
-                GIRNAR TREK.
-              </li>
-              <li>
-                04:00 PM : Reach at Hanumandhara, and take break for some
-                time. Spend some time, see mesmerising beauty around and enjoy
-                Maggie in lap of lush green mountains. *We can reach at the
-                top of the highest mountain of Gujarat if weather and time
-                permits.
-              </li>
-              <li>
-                06:00 PM: After the summit of highest peak of Gujarat, hike
-                back to Bhavnath Taleti.
-              </li>
-              <li>
-                09:00 PM : Later you can depart carrying beautiful memories.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      if (mysqli_num_rows($result) > 0) {
+        // Counter for unique IDs
+        $counter = 1;
+
+        // Output data of each row
+        while ($row = mysqli_fetch_assoc($result)) {
+          // Generate unique IDs for each accordion item
+          $collapseId = 'collapse_' . $counter;
+          $ariaControls = 'accordion_' . $counter;
+
+          echo '<div class="accordion-item">';
+          echo '<h2 class="accordion-header">';
+          echo '<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#' . $collapseId . '" aria-expanded="false" aria-controls="' . $ariaControls . '">';
+          echo 'Day ' . $row["Day"];
+          echo '</button>';
+          echo '</h2>';
+          echo '<div id="' . $collapseId . '" class="accordion-collapse collapse';
+          if ($counter === 1) {
+            echo ' show'; // Show the first accordion item by default
+          }
+          echo '" data-bs-parent="#accordionExample" aria-labelledby="' . $ariaControls . '">';
+          echo '<div class="accordion-body">';
+          echo '<img src="Images\GirnarTrek\itinerary1.jpeg" alt="" class="w-50" />';
+          echo '<ul class="">';
+          echo '<li>' . $row["Description"] . '</li>';
+          echo '</ul>';
+          echo '</div></div></div>';
+
+          // Increment counter
+          $counter++;
+        }
+      }
+      ?>
     </div>
     <!-- /Itinerary -->
-
-    <!-- Included & Excluded -->
-    <h2 class="mt-3">Included & Excluded</h2>
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <p class="fs-5 lead fs-4">
-            <i class="bi bi-check2 text-success"></i>Lush green Girnar
-            mountain hiking.
-          </p>
-
-          <p class="fs-5 lead fs-4">
-            <i class="bi bi-check2 text-success"></i>Damo Kund bathing.
-          </p>
-
-          <p class="fs-5 lead fs-4">
-            <i class="bi bi-check2 text-success"></i>Hygienic Meals: Lunch and
-            Dinner
-          </p>
-
-          <p class="fs-5 lead fs-4">
-            <i class="bi bi-check2 text-success"></i>Qualified & experienced
-            trek Leader, Guide and Support staff to help trekkers.
-          </p>
-        </div>
-
-        <div class="col">
-          <p class="fs-5 lead fs-4">
-            <i class="bi bi-x-lg text-danger"></i>GST @ 5.0%
-          </p>
-
-          <p class="fs-5 lead fs-4">
-            <i class="bi bi-x-lg text-danger"></i>Entry Fees.
-          </p>
-
-          <p class="fs-5 lead fs-4">
-            <i class="bi bi-x-lg text-danger"></i>Transport charge, Fuel
-            Charge.
-          </p>
-
-          <p class="fs-5 lead fs-4">
-            <i class="bi bi-x-lg text-danger"></i>Anything not mentioned under
-            the head “Inclusions”.
-          </p>
-
-          <p class="fs-5 lead fs-4">
-            <i class="bi bi-x-lg text-danger"></i>Any cost arising from
-            unforeseen circumstances like bad weather, road blocks etc.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!-- /Included & Excluded -->
 
     <!-- Booking button -->
     <div class="d-grid gap-2 col-6 mx-auto mb-5 mt-3">
@@ -275,30 +226,23 @@
           </div>
           <div class="modal-body">
             <div class="list-group list-group-flush">
-              <button type="button"
-                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                aria-current="true">
+              <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" aria-current="true">
                 The current button
                 <span class="badge text-bg-primary rounded-pill">14</span>
               </button>
-              <button type="button"
-                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">A
+              <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">A
                 second button item
                 <span class="badge text-bg-primary rounded-pill">14</span>
               </button>
-              <button type="button"
-                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">A third
+              <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">A third
                 button item
                 <span class="badge text-bg-primary rounded-pill">14</span>
               </button>
-              <button type="button"
-                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">A
+              <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">A
                 fourth button item
                 <span class="badge text-bg-primary rounded-pill">14</span>
               </button>
-              <button type="button"
-                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                disabled>A disabled button item
+              <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" disabled>A disabled button item
                 <span class="badge text-bg-primary rounded-pill">Batch Full</span>
               </button>
             </div>
