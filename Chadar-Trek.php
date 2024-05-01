@@ -10,10 +10,15 @@
   <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- /Bootstrap CSS -->
 
+  <!-- Bootstrap JS -->
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- /Bootstrap JS -->
+
   <!-- Icon CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
   <!-- /Icon CDN -->
-
+  <link rel="stylesheet" href="./style/navbar-link.css">
+  <link rel="stylesheet" href="./style/navbar-toggler.css">
   <?php include "./db_connection.php" ?>
 
   <title>Trek Page</title>
@@ -21,41 +26,44 @@
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-md bg-body-tertiary bg-light navbar-light" data-bs-theme="light">
+  <nav class="navbar navbar-expand-md sticky-top bg-body-secondary bg-light navbar-light" data-bs-theme="dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="home.php">
-        <img src="Images\logo\logo.svg" alt="TrekToppers Logo" width="100px" />
-      </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" onclick="this.classList.toggle('change')" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
           <li class="nav-item">
-            <a class="nav-link fs-5" aria-current="page" href="home.php"><b>Home</b></a>
+            <a class="nav-link fs-5" aria-current="page" href="./index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5" href="about.php"><b>About</b></a>
+            <a class="nav-link fs-5" href="./about.php">About</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link fs-5" href="contact.php"><b>Contact Us</b></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fs-5" href="login.php"><b>LogIn</b></a>
+          <li class="nav-item position position-fixed end-0 me-2">
+            <a class="nav-link fs-5 link-light" href="./login.php">Login</a>
           </li>
         </ul>
       </div>
+
     </div>
   </nav>
   <!-- /Navbar -->
 
   <!-- Content -->
   <div class="container p-0 px-3 mb-4">
+    <?php
+    $query = "SELECT t.TrekName, t.Batch_capacity, t.Price, h.Duration FROM trek t INNER JOIN highlights h ON t.Trek_ID = h.Trek_ID WHERE t.Trek_ID=3";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    $TrekName = $row['TrekName'];
+    ?>
     <!-- Content Heading -->
-    <h2 class="border-bottom border-3 border-secondary text-center text-middle mb-0 pb-1">
-      Chadar Trek
+    <h2 class="border-bottom border-3 border-secondary text-center text-middle mb-0 mt-2 pb-1">
+      <?php echo $TrekName; ?>
     </h2>
     <!-- /Content Heading -->
 
@@ -75,13 +83,13 @@
 
       <div class="row">
         <div class="col">
-          <h6>9 Nights, 10Days</h6>
+          <h6><?php echo $row['Duration']; ?></h6>
         </div>
         <div class="col border-start border-end">
-          <h6>25 people</h6>
+          <h6><?php echo $row['Batch_capacity']; ?></h6>
         </div>
         <div class="col">
-          <h6><i class="bi bi-currency-rupee"></i>20,000</h6>
+          <h6><i class="bi bi-currency-rupee"></i><?php echo $row['Price']; ?></h6>
         </div>
       </div>
     </div>
@@ -89,36 +97,59 @@
 
     <!-- Carousel -->
     <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+
       <!-- carousel indicators -->
       <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+        <?php
+        $counter = 0;
+        while (True) {
+          // Determine file extension based on availability of image files
+          $image_extensions = ['.png', '.jpg', '.jpeg'];
+          $image_path = '';
+          foreach ($image_extensions as $ext) {
+            $file_path = 'Images/' . $TrekName . '/' . ($counter + 1) . $ext;
+            if (file_exists(($file_path))) {
+              $image_path = $file_path;
+              break;
+            }
+          }
+          if (!file_exists(($file_path))) {
+            break;
+          }
+        ?>
+          <button type="button" data-bs-target="#carousel" data-bs-slide-to="<?php echo $counter; ?>" <?php if ($counter == 0) echo 'class="active"'; ?> aria-label="Slide <?php echo ($counter + 1); ?>"></button>
+        <?php
+          $counter++;
+        }
+        ?>
       </div>
       <!-- /carousel indicators -->
 
       <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="Images\ChadarTrek\1.jpg" class="d-block w-100" alt="..." data-bs-interval="10000" />
-        </div>
-        <div class="carousel-item">
-          <img src="Images\ChadarTrek\2.jpg" class="d-block w-100" alt="..." data-bs-interval="10000" />
-        </div>
-        <div class="carousel-item">
-          <img src="Images\ChadarTrek\3.jpg" class="d-block w-100" alt="..." data-bs-interval="10000" />
-        </div>
-        <div class="carousel-item">
-          <img src="Images\ChadarTrek\4.jpg" class="d-block w-100" alt="..." data-bs-interval="10000" />
-        </div>
-        <div class="carousel-item">
-          <img src="Images\ChadarTrek\5.jpg" class="d-block w-100" alt="..." data-bs-interval="10000" />
-        </div>
-        <div class="carousel-item">
-          <img src="Images\ChadarTrek\6.jpg" class="d-block w-100" alt="..." data-bs-interval="10000" />
-        </div>
+        <?php
+        $counter = 0;
+        while (True) {
+          // Determine file extension based on availability of image files
+          $image_extensions = ['.png', '.jpg', '.jpeg'];
+          $image_path = '';
+          foreach ($image_extensions as $ext) {
+            $file_path = 'Images/' . $TrekName . '/' . ($counter + 1) . $ext;
+            if (file_exists(($file_path))) {
+              $image_path = $file_path;
+              break;
+            }
+          }
+          if (!file_exists(($file_path))) {
+            break;
+          }
+        ?>
+          <div class="carousel-item <?php if ($counter == 0) echo 'active'; ?>">
+            <img src="<?php echo $image_path; ?>" class="d-block w-100" alt="..." data-bs-interval="8000">
+          </div>
+        <?php
+          $counter++;
+        }
+        ?>
       </div>
 
       <!-- previous and next button -->
@@ -133,6 +164,7 @@
       <!-- /previous and next button -->
     </div>
     <!-- /Carousel -->
+
 
     <!-- Overview -->
     <h1 class="display-6">Overview</h1>
@@ -201,7 +233,19 @@
           }
           echo '" data-bs-parent="#accordionExample">';
           echo '<div class="accordion-body">';
-          echo '<img src="Images\GirnarTrek\itinerary1.jpeg" alt="" class="w-50" />';
+
+          // Determine file extension based on availability of image files
+          $image_extensions = ['.png', '.jpg', '.jpeg'];
+          $image_path = '';
+          foreach ($image_extensions as $ext) {
+            $file_path = 'Images/' . $TrekName . '/Itinerary' . $counter . $ext;
+            if (file_exists(($file_path))) {
+              $image_path = $file_path;
+              break;
+            }
+          }
+          echo '<img src="' . $image_path . '" alt="" class="w-50" />';
+
           echo '<ul class="">';
           echo '<li>' . $row["Description"] . '</li>';
           echo '</ul>';
@@ -227,18 +271,19 @@
   <div class="container">
     <footer class="py-5">
       <div class="row">
-        <div class="col-6 col-md-6 mb-3">
+        <!-- Section Breadcrumb -->
+        <div class="col-md-6 mb-3">
           <h5>Section</h5>
-          <nav style="--bs-breadcrumb-divider: '|'" aria-label="breadcrumb">
+          <nav style="--bs-breadcrumb-divider: '|';" aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="home.php" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
+                <a href="./index.php" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
               </li>
               <li class="breadcrumb-item">
-                <a href="contact.php" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
+                <a href="./contact.php" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
               </li>
               <li class="breadcrumb-item">
-                <a href="about.php" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
+                <a href="./about.php" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
               </li>
               <li class="breadcrumb-item">
                 <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">FAQs</a>
@@ -246,51 +291,57 @@
             </ol>
           </nav>
         </div>
+        <!-- /Section Breadcrumb -->
 
+        <!-- Newsletter -->
         <div class="col-md-5 offset-md-1 mb-3">
           <form>
             <h5>Subscribe to our newsletter</h5>
             <p>Monthly digest of what's new and exciting from us.</p>
             <div class="d-flex flex-column flex-sm-row w-100 gap-2">
               <label for="newsletter1" class="visually-hidden">Email address</label>
-              <input id="newsletter1" type="text" class="form-control" placeholder="Email address" />
+              <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
               <button class="btn btn-primary" type="button">Subscribe</button>
             </div>
           </form>
         </div>
+        <!-- /Newsletter -->
       </div>
 
       <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-        <p>Copyright © 2023 by TrekToppers | Developed by Aarjav Jani</p>
-        <ul class="list-unstyled d-flex">
-          <li class="ms-3">
-            <a class="link-body-emphasis" href="#">
-              <!-- Link to our twitter handle-->
-              <i class="bi bi-twitter text-primary fs-4"></i>
-            </a>
-          </li>
-          <li class="ms-3">
-            <a class="link-body-emphasis" href="#">
-              <!-- Link to our instagram page-->
-              <i class="bi bi-instagram fs-4"></i>
-            </a>
-          </li>
-          <li class="ms-3">
-            <a class="link-body-emphasis" href="#">
-              <!-- Link to our facebook page-->
-              <i class="bi bi-facebook text-primary fs-4"></i>
-            </a>
-          </li>
-        </ul>
+        <!-- Copyright -->
+        <div class="col-md-6">
+          Copyright © 2023 by TrekToppers <br>
+          Developed by Aarjav Jani, Haider Ali, Devendra Solanki
+        </div>
+        <!-- /Copyright -->
+
+        <!-- Media Handles -->
+        <div class="col-md-6 position-relative">
+          <ul class="list-unstyled d-flex position-absolute end-0 left-on-small">
+            <li class="ms-3">
+              <a class="link-body-emphasis" href="#"> <!-- Link to our twitter handle-->
+                <i class="bi bi-twitter text-primary fs-4 inc-fs-on-small"></i>
+              </a>
+            </li>
+            <li class="ms-3">
+              <a class="link-body-emphasis" href="#"> <!-- Link to our instagram page-->
+                <i class="bi bi-instagram fs-4 inc-fs-on-small"></i>
+              </a>
+            </li>
+            <li class="ms-3">
+              <a class="link-body-emphasis" href="#"> <!-- Link to our facebook page-->
+                <i class="bi bi-facebook text-primary fs-4 inc-fs-on-small"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- /Media Handles -->
       </div>
     </footer>
   </div>
   <!-- /Footer -->
 
-  <!-- Optional JavaScript; choose one of the two! -->
-
-  <!-- Option 1: Bootstrap Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
 
 </html>

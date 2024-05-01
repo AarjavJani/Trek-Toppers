@@ -10,6 +10,10 @@
   <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- /Bootstrap CSS -->
 
+  <!-- Bootstrap JS -->
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- /Bootstrap JS -->
+
   <!-- Icon CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <!-- /Icon CDN -->
@@ -215,10 +219,10 @@
                 <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
               </li>
               <li class="breadcrumb-item">
-                <a href="contact.php" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
+                <a href="./contact.php" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
               </li>
               <li class="breadcrumb-item">
-                <a href="about.php" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
+                <a href="./about.php" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
               </li>
               <li class="breadcrumb-item">
                 <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">FAQs</a>
@@ -247,7 +251,7 @@
         <!-- Copyright -->
         <div class="col-md-6">
           Copyright © 2023 by TrekToppers <br>
-          Developed by Aarjav Jani
+          Developed by Aarjav Jani, Haider Ali, Devendra Solanki
         </div>
         <!-- /Copyright -->
 
@@ -276,10 +280,6 @@
     </footer>
   </div>
   <!-- /Footer -->
-
-  <!-- Bootstrap JS -->
-  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- /Bootstrap JS -->
 
 </body>
 

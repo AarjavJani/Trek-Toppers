@@ -11,6 +11,10 @@
   <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- /Bootstrap CSS -->
 
+  <!-- Bootstrap JS -->
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- /Bootstrap JS -->
+
   <!-- Icon CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
   <!-- /Icon CDN -->
@@ -34,7 +38,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
           <li class="nav-item">
-            <a class="nav-link fs-5" aria-current="page" href="./home.php">Home</a>
+            <a class="nav-link fs-5" aria-current="page" href="./index.php">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link fs-5" href="./about.php">About</a>
@@ -50,15 +54,16 @@
   <!-- /Navbar -->
 
   <!-- Content -->
-  <?php
-  $query = "SELECT t.TrekName, t.Batch_capacity, t.Price, h.Duration FROM trek t INNER JOIN highlights h ON t.Trek_ID = h.Trek_ID WHERE t.Trek_ID=1";
-  $result = mysqli_query($conn, $query);
-  $row = mysqli_fetch_assoc($result);
-  ?>
   <div class="container p-0 px-3 mb-4">
+    <?php
+    $query = "SELECT t.TrekName, t.Batch_capacity, t.Price, h.Duration FROM trek t INNER JOIN highlights h ON t.Trek_ID = h.Trek_ID WHERE t.Trek_ID=1";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    $TrekName = $row['TrekName'];
+    ?>
     <!-- Content Heading -->
     <h2 class="border-bottom border-3 border-secondary text-center text-middle mb-0 mt-2 pb-1">
-      <?php echo $row['TrekName']; ?>
+      <?php echo $TrekName; ?>
     </h2>
     <!-- /Content Heading -->
 
@@ -92,32 +97,59 @@
 
     <!-- Carousel -->
     <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+
       <!-- carousel indicators -->
       <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+        <?php
+        $counter = 0;
+        while (True) {
+          // Determine file extension based on availability of image files
+          $image_extensions = ['.png', '.jpg', '.jpeg'];
+          $image_path = '';
+          foreach ($image_extensions as $ext) {
+            $file_path = 'Images/' . $TrekName . '/' . ($counter + 1) . $ext;
+            if (file_exists(($file_path))) {
+              $image_path = $file_path;
+              break;
+            }
+          }
+          if (!file_exists(($file_path))) {
+            break;
+          }
+        ?>
+          <button type="button" data-bs-target="#carousel" data-bs-slide-to="<?php echo $counter; ?>" <?php if ($counter == 0) echo 'class="active"'; ?> aria-label="Slide <?php echo ($counter + 1); ?>"></button>
+        <?php
+          $counter++;
+        }
+        ?>
       </div>
       <!-- /carousel indicators -->
 
       <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="Images\GirnarTrek\1.jpeg" class="d-block w-100" alt="..." data-bs-interval="8000" />
-        </div>
-        <div class="carousel-item">
-          <img src="Images\GirnarTrek\2.jpg" class="d-block w-100" alt="..." data-bs-interval="8000" />
-        </div>
-        <div class="carousel-item">
-          <img src="Images\GirnarTrek\3.jpg" class="d-block w-100" alt="..." data-bs-interval="8000" />
-        </div>
-        <div class="carousel-item">
-          <img src="Images\GirnarTrek\4.jpg" class="d-block w-100" alt="..." data-bs-interval="8000" />
-        </div>
-        <div class="carousel-item">
-          <img src="Images\GirnarTrek\5.png" class="d-block w-100" alt="..." data-bs-interval="8000" />
-        </div>
+        <?php
+        $counter = 0;
+        while (True) {
+          // Determine file extension based on availability of image files
+          $image_extensions = ['.png', '.jpg', '.jpeg'];
+          $image_path = '';
+          foreach ($image_extensions as $ext) {
+            $file_path = 'Images/' . $TrekName . '/' . ($counter + 1) . $ext;
+            if (file_exists(($file_path))) {
+              $image_path = $file_path;
+              break;
+            }
+          }
+          if (!file_exists(($file_path))) {
+            break;
+          }
+        ?>
+          <div class="carousel-item <?php if ($counter == 0) echo 'active'; ?>">
+            <img src="<?php echo $image_path; ?>" class="d-block w-100" alt="..." data-bs-interval="8000">
+          </div>
+        <?php
+          $counter++;
+        }
+        ?>
       </div>
 
       <!-- previous and next button -->
@@ -132,6 +164,7 @@
       <!-- /previous and next button -->
     </div>
     <!-- /Carousel -->
+
 
     <!-- Overview -->
     <h1 class="display-6">Overview</h1>
@@ -198,9 +231,21 @@
           if ($counter === 1) {
             echo ' show'; // Show the first accordion item by default
           }
-          echo '" data-bs-parent="#accordionExample" aria-labelledby="' . $ariaControls . '">';
+          echo '" data-bs-parent="#accordionExample">';
           echo '<div class="accordion-body">';
-          echo '<img src="Images\GirnarTrek\itinerary1.jpeg" alt="" class="w-50" />';
+
+          // Determine file extension based on availability of image files
+          $image_extensions = ['.png', '.jpg', '.jpeg'];
+          $image_path = '';
+          foreach ($image_extensions as $ext) {
+            $file_path = 'Images/' . $TrekName . '/Itinerary' . $counter . $ext;
+            if (file_exists(($file_path))) {
+              $image_path = $file_path;
+              break;
+            }
+          }
+          echo '<img src="' . $image_path . '" alt="" class="w-50" />';
+
           echo '<ul class="">';
           echo '<li>' . $row["Description"] . '</li>';
           echo '</ul>';
@@ -213,6 +258,7 @@
       ?>
     </div>
     <!-- /Itinerary -->
+
 
     <!-- Booking button -->
     <div class="d-grid gap-2 col-6 mx-auto mb-5 mt-3">
@@ -308,13 +354,13 @@
           <nav style="--bs-breadcrumb-divider: '|';" aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
+                <a href="./index.php" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
               </li>
               <li class="breadcrumb-item">
-                <a href="contact.php" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
+                <a href="./contact.php" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
               </li>
               <li class="breadcrumb-item">
-                <a href="about.php" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
+                <a href="./about.php" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
               </li>
               <li class="breadcrumb-item">
                 <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">FAQs</a>
@@ -343,7 +389,7 @@
         <!-- Copyright -->
         <div class="col-md-6">
           Copyright © 2023 by TrekToppers <br>
-          Developed by Aarjav Jani
+          Developed by Aarjav Jani, Haider Ali, Devendra Solanki
         </div>
         <!-- /Copyright -->
 
@@ -372,10 +418,6 @@
     </footer>
   </div>
   <!-- /Footer -->
-
-  <!-- Bootstrap JS -->
-  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- /Bootstrap JS -->
 
 </body>
 

@@ -10,10 +10,14 @@
     <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- /Bootstrap CSS -->
 
+    <!-- Bootstrap JS -->
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- /Bootstrap JS -->
+
     <!-- Icon CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- /Icon CDN -->
-<?php include './db_connection.php' ?>
+    <?php include './db_connection.php' ?>
     <link rel="stylesheet" href="./style/navbar-link.css">
     <link rel="stylesheet" href="./style/navbar-toggler.css">
     <link rel="stylesheet" href="./style/footer-media-handles.css">
@@ -36,7 +40,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
                     <li class="nav-item">
-                        <a class="nav-link fs-5" aria-current="page" href="./home.php">Home</a>
+                        <a class="nav-link fs-5" aria-current="page" href="./index.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fs-5" href="./about.php">About</a>
@@ -137,13 +141,13 @@
                     <nav style="--bs-breadcrumb-divider: '|';" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
+                                <a href="./index.php" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="contact.php" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
+                                <a href="./contact.php" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="about.php" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
+                                <a href="./about.php" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">FAQs</a>
@@ -172,7 +176,7 @@
                 <!-- Copyright -->
                 <div class="col-md-6">
                     Copyright © 2023 by TrekToppers <br>
-                    Developed by Aarjav Jani
+                    Developed by Aarjav Jani, Haider Ali, Devendra Solanki
                 </div>
                 <!-- /Copyright -->
 
@@ -201,9 +205,5 @@
         </footer>
     </div>
     <!-- /Footer -->
-
-    <!-- Bootstrap JS -->
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- /Bootstrap JS -->
 
 </body>

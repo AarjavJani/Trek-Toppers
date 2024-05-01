@@ -11,23 +11,24 @@
   <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- /Bootstrap CSS -->
 
+  <!-- Bootstrap JS -->
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- /Bootstrap JS -->
+
   <!-- Icon CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
   <!-- /Icon CDN -->
 
   <link rel="stylesheet" href="./style/navbar-link.css">
   <link rel="stylesheet" href="./style/navbar-toggler.css">
-
 </head>
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-md sticky-top bg-body-secondary bg-dark navbar-light" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-md sticky-top bg-body-secondary bg-light navbar-light" data-bs-theme="dark">
     <div class="container-fluid">
 
-      <button class="navbar-toggler" onclick="this.classList.toggle('change')" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-        aria-label="Toggle navigation">
+      <button class="navbar-toggler" onclick="this.classList.toggle('change')" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <div class="bar"></div>
         <div class="bar"></div>
         <div class="bar"></div>
@@ -36,19 +37,17 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
           <li class="nav-item">
-            <a class="nav-link fs-5" aria-current="page" href="./home.php">Home</a>
+            <a class="nav-link fs-5" aria-current="page" href="./index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5 active" href="#">About</a>
+            <a class="nav-link fs-5" href="./about.php">About</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link fs-5" href="./contact.php">Contact Us</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fs-5" href="./login.php">Login</a>
+          <li class="nav-item position position-fixed end-0 me-2">
+            <a class="nav-link fs-5 link-light" href="./login.php">Login</a>
           </li>
         </ul>
       </div>
+
     </div>
   </nav>
   <!-- /Navbar -->
@@ -95,13 +94,13 @@
           <nav style="--bs-breadcrumb-divider: '|';" aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
+                <a href="./index.php" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
               </li>
               <li class="breadcrumb-item">
-                <a href="contact.php" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
+                <a href="./contact.php" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
               </li>
               <li class="breadcrumb-item">
-                <a href="about.php" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
+                <a href="./about.php" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
               </li>
               <li class="breadcrumb-item">
                 <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">FAQs</a>
@@ -130,7 +129,7 @@
         <!-- Copyright -->
         <div class="col-md-6">
           Copyright © 2023 by TrekToppers <br>
-          Developed by Aarjav Jani
+          Developed by Aarjav Jani, Haider Ali, Devendra Solanki
         </div>
         <!-- /Copyright -->
 
@@ -159,10 +158,6 @@
     </footer>
   </div>
   <!-- /Footer -->
-
-  <!-- Bootstrap JS -->
-  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- /Bootstrap JS -->
 
 </body>
 

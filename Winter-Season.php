@@ -10,6 +10,10 @@
     <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- /Bootstrap CSS -->
 
+    <!-- Bootstrap JS -->
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- /Bootstrap JS -->
+
     <!-- Icon CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- /Icon CDN -->
@@ -36,7 +40,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
                     <li class="nav-item">
-                        <a class="nav-link fs-5" aria-current="page" href="./home.php">Home</a>
+                        <a class="nav-link fs-5" aria-current="page" href="./index.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fs-5" href="./about.php">About</a>
@@ -51,54 +55,54 @@
     </nav>
     <!-- /Navbar -->
 
-<!-- Cards -->
-<h1 class="display-6 mt-3 ms-5">Winter Season Treks:</h1>
-<div class="row row-cols-1 row-cols-md-4 g-3 mx-5">
-  <?php
-  // Assuming $conn is your MySQLi connection
-  $sql = "SELECT t.TrekName, t.Location, t.Price, t.Season, h.Duration FROM Trek t JOIN highlights h ON t.Trek_ID = h.Trek_ID WHERE t.Season = 'Winter' ";
-  $result = mysqli_query($conn, $sql);
+    <!-- Cards -->
+    <h1 class="display-6 mt-3 ms-5">Winter Season Treks:</h1>
+    <div class="row row-cols-1 row-cols-md-4 g-3 mx-5">
+        <?php
+        // Assuming $conn is your MySQLi connection
+        $sql = "SELECT t.TrekName, t.Location, t.Price, t.Season, h.Duration FROM Trek t JOIN highlights h ON t.Trek_ID = h.Trek_ID WHERE t.Season = 'Winter' ";
+        $result = mysqli_query($conn, $sql);
 
-  if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-      // Determine file extension based on availability of image files
-      $image_extensions = ['png', 'jpg', 'jpeg'];
-      $image_path = '';
-      foreach ($image_extensions as $ext) {
-        $file_path = 'Images\Cards\\' . strtolower(str_replace(' ', '-', $row['TrekName'])) . '.' . $ext;
-        if (file_exists($file_path)) {
-          $image_path = $file_path;
-          break;
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                // Determine file extension based on availability of image files
+                $image_extensions = ['png', 'jpg', 'jpeg'];
+                $image_path = '';
+                foreach ($image_extensions as $ext) {
+                    $file_path = 'Images\Cards\\' . strtolower(str_replace(' ', '-', $row['TrekName'])) . '.' . $ext;
+                    if (file_exists($file_path)) {
+                        $image_path = $file_path;
+                        break;
+                    }
+                }
+        ?>
+                <div class="col">
+                    <div class="card h-100">
+                        <!-- Assuming your image paths are correct -->
+                        <a href="<?php echo str_replace(' ', '-', $row['TrekName']); ?>.php">
+                            <img src="<?php echo $image_path; ?>" class="card-img-top" alt="Trek Thumbnail">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $row["TrekName"]; ?></h5>
+                            <p><i class="bi bi-geo-alt"></i><?php echo $row["Location"]; ?></p><br>
+                            <ul class="list-group list-group-horizontal">
+                                <li class="list-group-item border-0 position-absolute bottom-0 start-0"><?php echo $row["Duration"]; ?></li>
+                                <li class="list-group-item border-0 position-absolute bottom-0 end-0">
+                                    <i class="bi bi-currency-rupee"></i><?php echo $row["Price"]; ?>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+        <?php
+            }
+        } else {
+            echo "No treks found!";
         }
-      }
-  ?>
-      <div class="col">
-        <div class="card h-100">
-          <!-- Assuming your image paths are correct -->
-          <a href="<?php echo str_replace(' ', '-', $row['TrekName']); ?>.php">
-            <img src="<?php echo $image_path; ?>" class="card-img-top" alt="Trek Thumbnail">
-          </a>
-          <div class="card-body">
-            <h5 class="card-title"><?php echo $row["TrekName"]; ?></h5>
-            <p><i class="bi bi-geo-alt"></i><?php echo $row["Location"]; ?></p><br>
-            <ul class="list-group list-group-horizontal">
-              <li class="list-group-item border-0 position-absolute bottom-0 start-0"><?php echo $row["Duration"]; ?></li>
-              <li class="list-group-item border-0 position-absolute bottom-0 end-0">
-                <i class="bi bi-currency-rupee"></i><?php echo $row["Price"]; ?>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-  <?php
-    }
-  } else {
-    echo "No treks found!";
-  }
 
-  ?>
-</div>
-<!-- /Cards -->
+        ?>
+    </div>
+    <!-- /Cards -->
 
     <!-- Footer -->
     <div class="container">
@@ -110,13 +114,13 @@
                     <nav style="--bs-breadcrumb-divider: '|';" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
+                                <a href="./index.php" class="text-body-secondary link-underline link-underline-opacity-0">Home</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="contact.php" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
+                                <a href="./contact.php" class="text-body-secondary link-underline link-underline-opacity-0">Contact</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="about.php" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
+                                <a href="./about.php" class="text-body-secondary link-underline link-underline-opacity-0">About</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <a href="#" class="text-body-secondary link-underline link-underline-opacity-0">FAQs</a>
@@ -145,7 +149,7 @@
                 <!-- Copyright -->
                 <div class="col-md-6">
                     Copyright © 2023 by TrekToppers <br>
-                    Developed by Aarjav Jani
+                    Developed by Aarjav Jani, Haider Ali, Devendra Solanki
                 </div>
                 <!-- /Copyright -->
 
@@ -174,9 +178,5 @@
         </footer>
     </div>
     <!-- /Footer -->
-
-    <!-- Bootstrap JS -->
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- /Bootstrap JS -->
 
 </body>
