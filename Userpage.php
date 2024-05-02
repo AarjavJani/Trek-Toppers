@@ -68,11 +68,28 @@
     <!-- /Navbar -->
 
     <!-- Content -->
+    <?php
+    if ($_SESSION['showAlert'] == True) {
+        if ($_SESSION['alert_message'] == "InvalidPhoneFormat") {
+            echo '<div class="alert alert-danger alert-dismissible fade show position-absolute" style="width:100%;" role="alert">';
+            echo $_SESSION['phone_err_message'];
+        } elseif ($_SESSION['alert_message'] == "SuccessfullyInserted") {
+            echo '<div class="alert alert-success alert-dismissible fade show position-absolute" style="width:100%;" role="alert">';
+            echo $_SESSION['success_inserted_message'];
+        }
+        echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+        echo '</div>';
+
+        //Flag reset
+        $_SESSION['showAlert'] = False;
+    }
+    ?>
+
     <div class="container text-center">
         <div class="row mt-5 mx-auto">
             <div class="col-6">
                 <form action="" class="mx-auto mt-3">
-                    <img src="./Images/User/photo.jpg" alt="Profile Image" class="rounded-3 w-25">
+                    <img src="./Images/User/user-icon.png" alt="Profile Image" class="rounded-3 w-25">
                     <input type="file" accept="image/*">
                 </form>
             </div>
@@ -111,39 +128,48 @@
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Change User Credentials</h5>
+                                <h5 class="modal-title">Add User Credentials</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="list-group list-group-flush">
-                                    <form action="">
-                                        <!-- FirstName -->
+                                    <form action="./user_backend.php" method="post">
+                                        <!-- Date of Birth -->
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control rounded-3" id="floatingFname" placeholder="First Name">
-                                            <label for="floatingFname">First Name</label>
+                                            <input type="date" class="form-control rounded-3" id="dob" name="dob" placeholder="Date of Birth" min="1920-01-01" max="<?php echo date('Y-m-d', strtotime('-0 day')); ?>">
+                                            <label for="dob">Date of Birth</label>
                                         </div>
-                                        <!-- /FirstName -->
+                                        <!-- /Date of Birth -->
 
-                                        <!-- LastName -->
-                                        <div class="form-floating mb-3">
-                                            <input type="text" class="form-control rounded-3" id="floatingLname" placeholder="Last Name">
-                                            <label for="floatingLname">Last Name</label>
-                                        </div>
-                                        <!-- /LastName -->
+                                        <!-- Gender -->
+                                        <select class="form-select mb-3 rounded-3" id="gender" name="gender">
+                                            <option selected disabled>Select Gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                        <!-- /Gender -->
 
                                         <!-- PhoneNo -->
                                         <div class="form-floating mb-3">
-                                            <input type="tel" class="form-control rounded-3" id="floatingPhone" placeholder="Phone No" pattern="[0-9]{10}">
-                                            <label for="floatingPhone">Phone No</label>
+                                            <input type="tel" class="form-control rounded-3" id="phone" name="phone" placeholder="Phone No" pattern="[0-9]{10}">
+                                            <label for="phone">Phone No</label>
                                         </div>
                                         <!-- /PhoneNo -->
 
+                                        <!-- Hidden submit button -->
+                                        <button id="submitButton" type="submit" style="display: none;"></button>
                                     </form>
                                 </div>
                             </div>
                             <div class="modal-footer justify-content-center">
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="button" id="saveChangesBtn" class="btn btn-primary">Save changes</button>
                             </div>
+                            <script>
+                                document.getElementById("saveChangesBtn").addEventListener("click", function() {
+                                    // Trigger form submission
+                                    document.getElementById("submitButton").click();
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>

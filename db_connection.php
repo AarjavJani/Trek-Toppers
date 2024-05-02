@@ -30,5 +30,11 @@ if (!isset($_SESSION['err_user_nf_message'])) {
 if (!isset($_SESSION['user'])) {
   $_SESSION['user'] = "";
 }
+if (!isset($_SESSION['phone_err_message'])) {
+  $_SESSION['phone_err_message'] = "";
+}
+if (!isset($_SESSION['success_inserted_message'])) {
+  $_SESSION['success_inserted_message'] = "";
+}
 
 ?>

@@ -9,6 +9,8 @@ unset($_SESSION['alert_message']);
 unset($_SESSION['err_pass_message']);
 unset($_SESSION['err_user_nf_message']);
 unset($_SESSION['user']);
+unset($_SESSION['phone_err_message']);
+unset($_SESSION['success_inserted_message']);
 
 // Destroy all session data
 session_destroy();
@@ -34,8 +36,12 @@ if (!isset($_SESSION['err_user_nf_message'])) {
 if (!isset($_SESSION['user'])) {
   $_SESSION['user'] = "";
 }
-
+if (!isset($_SESSION['phone_err_message'])) {
+  $_SESSION['phone_err_message'] = "";
+}
+if (!isset($_SESSION['success_inserted_message'])) {
+  $_SESSION['success_inserted_message'] = "";
+}
 // Redirect the user to the login page
 header("Location: index.php");
 exit;
-?>
