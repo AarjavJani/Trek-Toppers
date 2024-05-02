@@ -26,10 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Password validation
         if ($password == $row['password']) {
             $_SESSION['authentication'] = True;
-            echo '<div class="alert alert-success alert-dismissible fade show position-absolute" style="width:100%;" role="alert">';
-            echo "<strong>Logged In successfully!</strong>";
-            echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-            echo '</div>';
             header("Location: index.php");
             exit();
         } else {
