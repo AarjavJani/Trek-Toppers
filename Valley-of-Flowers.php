@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="./style/footer-media-handles.css">
     <?php
     include "./db_connection.php";
-    session_start();
+    // session_start();
     ?>
 
     <title>Trek Page</title>
@@ -76,6 +76,7 @@
         $result = mysqli_query($conn, $query);
         $row = mysqli_fetch_assoc($result);
         $TrekName = $row['TrekName'];
+        $Price = $row['Price'];
         ?>
         <!-- Content Heading -->
         <h2 class="border-bottom border-3 border-secondary text-center text-middle mb-0 mt-2 pb-1">

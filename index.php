@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="./style/footer-media-handles.css">
   <?php
   require "./db_connection.php";
-  session_start();
+  // session_start();
   ?>
   <title>TrekToppers</title>
 </head>

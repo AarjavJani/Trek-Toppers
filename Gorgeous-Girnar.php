@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="./style/footer-media-handles.css">
   <?php
   include "./db_connection.php";
-  session_start();
+  // session_start();
   ?>
 
 </head>

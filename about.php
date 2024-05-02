@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="./style/navbar-link.css">
   <link rel="stylesheet" href="./style/navbar-toggler.css">
   <link rel="stylesheet" href="./style/footer-media-handles.css">
-  <?php session_start(); ?>
+  <?php session_start();?>
 </head>
 
 <body>

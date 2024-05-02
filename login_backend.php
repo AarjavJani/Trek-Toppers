@@ -1,12 +1,7 @@
 <?php include './db_connection.php';
 
-session_start();
+// session_start();
 
-$_SESSION['authentication'] = False;
-$_SESSION['showAlert'] = False; //Show Alert flag
-$_SESSION['alert_message'] = "";
-$_SESSION['err_pass_message'] = "";
-$_SESSION['err_user_nf_message'] = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require './db_connection.php';
