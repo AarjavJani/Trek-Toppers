@@ -22,8 +22,61 @@
 </head>
 
 <body>
-  <!-- BACKGROUND NEEDS AN IMAGE -->
+  <?php
+  $showAlert = False; //Show Alert flag
+  $alert_message = "";
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    require './db_connection.php';
 
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $cpassword = $_POST['cpassword'];
+
+    $err_user_exists_message = "";
+    $err_pass_message = "";
+
+    // Existing user validation
+    $check = "SELECT * FROM `user` where user_id= '$username'";
+    $exists = mysqli_query($conn, $check);
+    if (mysqli_num_rows($exists) == 0) {
+      // Password validation
+      if ($password == $cpassword) {
+        $sql = "INSERT INTO `user`(user_id,email,`password`,firstname,lastname) values('$username','$email','$password','$firstname','$lastname')";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+          echo '<div class="alert alert-success alert-dismissible fade show position-absolute" style="width:100%;" role="alert">';
+          echo "<strong>Signed up successfully!</strong> You should now log in.";
+          echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+          echo '</div>';
+        }
+      } else {
+        $showAlert = True; //Show alert for password error
+        $alert_message = "passError";
+        $err_pass_message = "<strong>Password doesn't match!</strong> Try again.";
+      }
+    } else {
+      $showAlert = True; //Show alert for existing user
+      $alert_message = "userExists";
+      $err_user_exists_message = "<strong>User already exists!</strong> Try another username.";
+    }
+  }
+
+  if ($showAlert == True) {
+    echo '<div class="alert alert-danger alert-dismissible fade show position-absolute" style="width:100%;" role="alert">';
+    if ($alert_message == "passError") {
+      echo $err_pass_message;
+    } elseif ($alert_message == "userExists") {
+      echo $err_user_exists_message;
+    }
+    echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+    echo '</div>';
+  }
+  ?>
+
+  <!-- Signup Modal -->
   <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">
     <div class="modal-dialog" role="document">
       <div class="modal-content rounded-4 shadow">
@@ -32,32 +85,46 @@
         </div>
 
         <div class="modal-body p-5 pt-0">
-          <form class="">
-            <!-- Name -->
+          <form action="./signup.php" method="post" class="">
+            <!-- FirstName -->
             <div class="form-floating mb-3">
-              <input type="text" class="form-control rounded-3" id="floatingInput" placeholder="Name">
-              <label for="floatingInput">Name</label>
+              <input type="text" class="form-control rounded-3" id="firstname" name="firstname" placeholder="Name" required>
+              <label for="firstname">Firstname</label>
             </div>
-            <!-- /Name -->
+            <!-- /FirstName -->
+
+            <!-- LastName -->
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control rounded-3" id="lastname" name="lastname" placeholder="Name" required>
+              <label for="lastname">Lastname</label>
+            </div>
+            <!-- /LastName -->
+
+            <!-- Username -->
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control rounded-3" id="username" name="username" placeholder="name@example.com" required>
+              <label for="username">Username</label>
+            </div>
+            <!-- /Username -->
 
             <!-- E-mail -->
             <div class="form-floating mb-3">
-              <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
-              <label for="floatingInput">Email address</label>
+              <input type="email" class="form-control rounded-3" id="email" name="email" placeholder="name@example.com" required>
+              <label for="email">Email address</label>
             </div>
             <!-- /E-mail -->
 
             <!-- Password -->
             <div class="form-floating mb-3">
-              <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
-              <label for="floatingPassword">Password</label>
+              <input type="password" class="form-control rounded-3" id="password" name="password" placeholder="Password" required>
+              <label for="password">Password</label>
             </div>
             <!-- /Password -->
 
             <!-- Confirm Password -->
             <div class="form-floating mb-3">
-              <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Confirm Password">
-              <label for="floatingPassword">Confirm Password</label>
+              <input type="password" class="form-control rounded-3" id="cpassword" name="cpassword" placeholder="Confirm Password" required>
+              <label for="cpassword">Confirm Password</label>
             </div>
             <!-- /Confirm Password -->
 

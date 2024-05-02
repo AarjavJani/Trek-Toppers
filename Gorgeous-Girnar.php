@@ -20,6 +20,7 @@
   <!-- /Icon CDN -->
   <link rel="stylesheet" href="./style/navbar-link.css">
   <link rel="stylesheet" href="./style/navbar-toggler.css">
+  <link rel="stylesheet" href="./style/footer-media-handles.css">
   <?php include "./db_connection.php" ?>
 
 </head>

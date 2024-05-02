@@ -31,18 +31,18 @@
         </div>
 
         <div class="modal-body p-5 pt-0">
-          <form class="">
+          <form action="./login_backend.php" method="post" class="">
             <!-- E-mail -->
             <div class="form-floating mb-3">
-              <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
-              <label for="floatingInput">Email address</label>
+              <input type="text" class="form-control rounded-3" id="username" name="username" placeholder="name@example.com" required>
+              <label for="username">Username</label>
             </div>
             <!-- /E-mail -->
 
             <!-- Password -->
             <div class="form-floating mb-3">
-              <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
-              <label for="floatingPassword">Password</label>
+              <input type="password" class="form-control rounded-3" id="password" name="password" placeholder="Password" required>
+              <label for="password">Password</label>
             </div>
             <!-- /Password -->
 
