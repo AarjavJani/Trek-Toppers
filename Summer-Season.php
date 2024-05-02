@@ -17,10 +17,13 @@
     <!-- Icon CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- /Icon CDN -->
-    <?php include './db_connection.php' ?>
     <link rel="stylesheet" href="./style/navbar-link.css">
     <link rel="stylesheet" href="./style/navbar-toggler.css">
     <link rel="stylesheet" href="./style/footer-media-handles.css">
+    <?php
+    include './db_connection.php';
+    session_start();
+    ?>
 
     <title>TrekToppers</title>
 </head>
@@ -40,14 +43,23 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
                     <li class="nav-item">
-                        <a class="nav-link fs-5" aria-current="page" href="./index.php">Home</a>
+                        <a class="nav-link fs-5 active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fs-5" href="./about.php">About</a>
                     </li>
-                    <li class="nav-item position position-fixed end-0 me-2">
-                        <a class="nav-link fs-5 link-light" href="./login.php">Login</a>
-                    </li>
+                    <?php
+                    if ($_SESSION['authentication'] == True) {
+                        echo '<li class="nav-item position position-fixed end-0 me-2">';
+                        echo '<a class="nav-link fs-5 link-light" href="./userpage.php">User</a>';
+                        echo '</li>';
+                    } else {
+                        echo '<li class="nav-item position position-fixed end-0 me-2">';
+                        echo '<a class="nav-link fs-5 link-light" href="./login.php">Login</a>';
+                        echo '</li>';
+                    }
+                    ?>
+
                 </ul>
             </div>
 
