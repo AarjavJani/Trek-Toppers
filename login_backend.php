@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Password validation
         if ($password == $row['password']) {
             $_SESSION['authentication'] = True;
+            $_SESSION['user'] = $username;
             header("Location: index.php");
             exit();
         } else {

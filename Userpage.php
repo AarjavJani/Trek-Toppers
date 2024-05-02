@@ -24,7 +24,7 @@
     include './db_connection.php';
     // session_start();
     ?>
-    
+
     <title>TrekToppers</title>
 </head>
 
@@ -78,7 +78,8 @@
             </div>
             <div class="col-6 text-start">
                 <?php
-                $sql = "SELECT * FROM `user` WHERE user_id = 'janiaarjav'";
+                $user = $_SESSION['user'];
+                $sql = "SELECT * FROM `user` WHERE user_id = '$user'";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
                 ?>
@@ -95,6 +96,15 @@
                     <button class="btn border-1 border-black fs-6" type="button" data-bs-toggle="modal" data-bs-target="#EditModal">Edit</button>
                 </div>
                 <!-- /Edit button -->
+
+                <!-- Logout form -->
+                <form id="logoutForm" action="logout_backend.php" method="post">
+                    <div class="gap-2 mx-auto mb-5 mt-3">
+                        <button class="btn border-1 border-black fs-6" type="submit">Logout</button>
+                    </div>
+                </form>
+                <!-- /Logout form -->
+
 
                 <!-- Edit modal -->
                 <div class="modal" tabindex="-1" id="EditModal">

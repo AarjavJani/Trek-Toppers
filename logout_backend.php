@@ -1,15 +1,19 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, "trektoppers");
+// Start the session
+session_start();
 
-// Check connection
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
+//Unset all session variables
+unset($_SESSION['authentication']);
+unset($_SESSION['showAlert']);
+unset($_SESSION['alert_message']);
+unset($_SESSION['err_pass_message']);
+unset($_SESSION['err_user_nf_message']);
+unset($_SESSION['user']);
 
+// Destroy all session data
+session_destroy();
+
+// New Session to reset all variables
 session_start();
 // Initialize session variables to avoid "undefined array key" warnings
 if (!isset($_SESSION['authentication'])) {
@@ -31,4 +35,7 @@ if (!isset($_SESSION['user'])) {
   $_SESSION['user'] = "";
 }
 
+// Redirect the user to the login page
+header("Location: index.php");
+exit;
 ?>
