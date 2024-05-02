@@ -73,6 +73,7 @@
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
     $TrekName = $row['TrekName'];
+    $Price = $row['Price'];
     ?>
     <!-- Content Heading -->
     <h2 class="border-bottom border-3 border-secondary text-center text-middle mb-0 mt-2 pb-1">
@@ -323,36 +324,12 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#PayModal">Select</button>
+            <button type="button" class="btn btn-primary"><?php echo 'Pay Rs ' . $Price; ?></button>
           </div>
         </div>
       </div>
     </div>
     <!-- /Booking Date modal -->
-
-    <!-- Pay modal -->
-    <div class="modal" tabindex="-1" id="PayModal">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Pay</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="input-group mb-3">
-              <span class="input-group-text">Rs</span>
-              <input type="number" class="form-control" aria-label="Amount">
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#DateModal">Back</button>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="">Proceed to Pay</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /Pay modal -->
-
 
   </div>
   <!-- /Content -->

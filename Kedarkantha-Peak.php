@@ -75,6 +75,7 @@
         $result = mysqli_query($conn, $query);
         $row = mysqli_fetch_assoc($result);
         $TrekName = $row['TrekName'];
+        $Price = $row['Price'];
         ?>
         <!-- Content Heading -->
         <h2 class="border-bottom border-3 border-secondary text-center text-middle mb-0 mt-2 pb-1">
@@ -276,9 +277,60 @@
 
         <!-- Booking button -->
         <div class="d-grid gap-2 col-6 mx-auto mb-5 mt-3">
-            <button class="btn btn-primary fs-4" type="button">Book tickets</button>
+            <button class="btn btn-primary fs-4" type="button" data-bs-toggle="modal" data-bs-target="#DateModal">Book
+                tickets</button>
         </div>
         <!-- /Booking button -->
+
+        <!-- Booking Date modal -->
+        <div class="modal" tabindex="-1" id="DateModal">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Select Batch</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <?php
+                        // Fetching batches data from the database
+                        $query = "SELECT * FROM `batches` WHERE Trek_ID=2";
+                        $result = mysqli_query($conn, $query);
+                        if (mysqli_num_rows($result) > 0) {
+                            echo '<div class="list-group list-group-flush">';
+                            $counter = 1;
+
+                            // Loop through each batch and display buttons
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo '<div class="list-group list-group-flush">';
+                                echo '<div class="form-check list-group-item list-group-item-action">';
+                                if ($row['people'] == 20) {
+                                    echo '<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault' . $counter . '" disabled>';
+                                    echo '<label class="form-check-label d-flex justify-content-between align-items-center" for="flexRadioDefault' . $counter . '">';
+                                    echo 'From: ' . $row['from_date'] . ' To: ' . $row['to_date'];
+                                    echo '<span class="badge text-bg-primary rounded-pill">Batch Full</span>';
+                                } else {
+                                    echo '<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault' . $counter . '">';
+                                    echo '<label class="form-check-label d-flex justify-content-between align-items-center" for="flexRadioDefault' . $counter . '">';
+                                    echo 'From: ' . $row['from_date'] . ' To: ' . $row['to_date'];
+                                    echo '<span class="badge text-bg-primary rounded-pill">' . $row['people'] . '</span>';
+                                }
+                                echo '</label></div></div>';
+                                $counter++;
+                            }
+                            echo '</div>';
+                        } else {
+                            echo "No batches found.";
+                        }
+                        ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary"><?php echo 'Pay Rs ' . $Price; ?></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Booking Date modal -->
 
     </div>
     <!-- /Content -->
