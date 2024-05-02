@@ -1,89 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php include './db_connection.php';
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+session_start();
 
-    <!-- Bootstrap CSS -->
-    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- /Bootstrap CSS -->
+$_SESSION['authentication'] = False;
+$_SESSION['showAlert'] = False; //Show Alert flag
+$_SESSION['alert_message'] = "";
+$_SESSION['err_pass_message'] = "";
+$_SESSION['err_user_nf_message'] = "";
 
-    <!-- Icon CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <!-- /Icon CDN -->
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    require './db_connection.php';
 
-    <!-- Bootstrap JS -->
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- /Bootstrap JS -->
+    $username = mysqli_real_escape_string($conn, $_POST['username']); // Prevent SQL injection
+    $password = $_POST['password'];
 
-    <?php include './db_connection.php' ?>
-</head>
-
-<body>
-    <?php
-    $authentication_successful = False;
-    $showAlert = False; //Show Alert flag
-    $alert_message = "";
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        require './db_connection.php';
-
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        $err_pass_message = "";
-        $err_user_nf_message = "";
-
-        // Existing user validation
-        $sql = "SELECT user_id,`password` FROM `user` where user_id= '$username'";
-        $result = mysqli_query($conn, $sql);
+    // Existing user validation
+    $sql = "SELECT user_id,`password` FROM `user` where user_id= '$username'";
+    $result = mysqli_query($conn, $sql);
+    if (!$result) {
+        die("Query failed: " . mysqli_error($conn));
+    }
+    if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
-        if (mysqli_num_rows($result) == 1) {
 
-            // Password validation
-            if ($password == $row['password']) {
-                $authentication_successful = True;
-                echo '<div class="alert alert-success alert-dismissible fade show position-absolute" style="width:100%;" role="alert">';
-                echo "<strong>Logged In successfully!</strong>";
-                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-                echo '</div>';
-            } else {
-                $showAlert = True; //Show alert for password error
-                $alert_message = "passError";
-                $err_pass_message = "<strong>Invalid Password!</strong> Try again.";
-            }
+        // Password validation
+        if ($password == $row['password']) {
+            $_SESSION['authentication'] = True;
+            echo '<div class="alert alert-success alert-dismissible fade show position-absolute" style="width:100%;" role="alert">';
+            echo "<strong>Logged In successfully!</strong>";
+            echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+            echo '</div>';
+            header("Location: index.php");
+            exit();
         } else {
-            $showAlert = True; //Show alert for password error
-            $alert_message = "userNotFoundError";
-            $err_user_nf_message = "<strong>User not found!</strong> Try again or Sign up.";
+            $_SESSION['showAlert'] = True; //Show alert for password error
+            $_SESSION['alert_message'] = "passError";
+            $_SESSION['err_pass_message'] = "<strong>Invalid Password!</strong> Try again.";
+            header("Location: login.php");
+            exit();
         }
-    }
-
-    if ($showAlert == True) {
-        echo '<div class="alert alert-danger alert-dismissible fade show position-absolute" style="width:100%;" role="alert">';
-        if ($alert_message == "passError") {
-            echo $err_pass_message;
-        } elseif ($alert_message == "userNotFoundError") {
-            echo $err_user_nf_message;
-        }
-        echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-        echo '</div>';
-    }
-
-    // If authentication is successful, redirect to index.php
-    if ($authentication_successful) {
-        header("Location: index.php");
-        exit; // Make sure to exit to prevent further execution
     } else {
-        // If authentication fails, you can display an error message or redirect to a different page
+        $_SESSION['showAlert'] = True; //Show alert for password error
+        $_SESSION['alert_message'] = "userNotFoundError";
+        $_SESSION['err_user_nf_message'] = "<strong>User not found!</strong> Try again or Sign up.";
         header("Location: login.php");
-        exit;
+        exit();
     }
-    ?>
-
-
-
-</body>
-
-</html>
+}

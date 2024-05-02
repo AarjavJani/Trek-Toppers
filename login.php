@@ -22,7 +22,22 @@
 </head>
 
 <body>
+  <?php
+  session_start();
+  if ($_SESSION['showAlert'] == True) {
+    echo '<div class="alert alert-danger alert-dismissible fade show position-absolute" style="width:100%;" role="alert">';
+    if ($_SESSION['alert_message'] == "passError") {
+        echo $_SESSION['err_pass_message'];
+    } elseif ($_SESSION['alert_message'] == "userNotFoundError") {
+        echo $_SESSION['err_user_nf_message'];
+    }
+    echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+    echo '</div>';
 
+    //Flag reset
+    $_SESSION['showAlert'] = False;
+}
+  ?>
   <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">
     <div class="modal-dialog" role="document">
       <div class="modal-content rounded-4 shadow">
