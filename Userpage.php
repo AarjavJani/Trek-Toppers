@@ -90,7 +90,7 @@
             <div class="col-6">
                 <form action="" class="mx-auto mt-3">
                     <img src="./Images/User/user-icon.png" alt="Profile Image" class="rounded-3 w-25">
-                    <input type="file" accept="image/*">
+                    <!-- <input type="file" accept="image/*"> -->
                 </form>
             </div>
             <div class="col-6 text-start">

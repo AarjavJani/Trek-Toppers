@@ -84,35 +84,35 @@
 
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="Images\Carousel\p1.jpeg" class="d-block w-100" alt="..." data-bs-interval="8000">
+        <img src="Images\Carousel\p1.jpeg" class="d-block w-100" alt="..." data-bs-interval="6000">
       </div>
 
       <div class="carousel-item">
-        <img src="Images\Carousel\p2.jpeg" class="d-block w-100" alt="..." data-bs-interval="8000">
+        <img src="Images\Carousel\p2.jpeg" class="d-block w-100" alt="..." data-bs-interval="6000">
       </div>
 
       <div class="carousel-item">
-        <img src="Images\Carousel\p3.jpeg" class="d-block w-100" alt="..." data-bs-interval="8000">
+        <img src="Images\Carousel\p3.jpeg" class="d-block w-100" alt="..." data-bs-interval="6000">
       </div>
 
       <div class="carousel-item">
-        <img src="Images\Carousel\p4.jpeg" class="d-block w-100" alt="..." data-bs-interval="8000">
+        <img src="Images\Carousel\p4.jpeg" class="d-block w-100" alt="..." data-bs-interval="6000">
       </div>
 
       <div class="carousel-item">
-        <img src="Images\Carousel\p5.jpeg" class="d-block w-100" alt="..." data-bs-interval="8000">
+        <img src="Images\Carousel\p5.jpeg" class="d-block w-100" alt="..." data-bs-interval="6000">
       </div>
 
       <div class="carousel-item">
-        <img src="Images\Carousel\p6.jpeg" class="d-block w-100" alt="..." data-bs-interval="8000">
+        <img src="Images\Carousel\p6.jpeg" class="d-block w-100" alt="..." data-bs-interval="6000">
       </div>
 
       <div class="carousel-item">
-        <img src="Images\Carousel\p7.jpeg" class="d-block w-100" alt="..." data-bs-interval="8000">
+        <img src="Images\Carousel\p7.jpeg" class="d-block w-100" alt="..." data-bs-interval="6000">
       </div>
 
       <div class="carousel-item">
-        <img src="Images\Carousel\p8.jpeg" class="d-block w-100" alt="..." data-bs-interval="8000">
+        <img src="Images\Carousel\p8.jpeg" class="d-block w-100" alt="..." data-bs-interval="6000">
       </div>
 
     </div>
